@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {ToDoInterface} from "../../interfaces/to-do";
 import {FormsModule} from "@angular/forms";
 
