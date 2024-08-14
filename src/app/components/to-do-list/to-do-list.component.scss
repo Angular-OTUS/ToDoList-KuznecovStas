@@ -1,0 +1,75 @@
+.todo-lists {
+  background-color: #d3d3d3; /* Серый фон для todo-lists */
+  margin: 0;
+  padding: 10px  50px  20px  50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  color: blue;
+}
+
+.todo-description{
+  flex-grow: 1;
+  text-align: left;
+}
+
+.todo-delete-button {
+  text-align: right;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-right: 10px;
+}
+
+.todo-finish{
+  color: black;
+  text-decoration: line-through;
+}
+
+.btn-add {
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.btn-add:disabled{
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666666;
+}
+
+.todo-text-input {
+  margin-top: 20px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.btn-delete{
+  cursor: pointer;
+  border: none;
+  background-color: #c30000;
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
