@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ToDoInterface} from "../../interfaces/to-do";
 import {FormsModule} from "@angular/forms";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-to-do-list',
