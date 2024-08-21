@@ -1,0 +1,21 @@
+<div class="todo-lists">
+  <h1>{{ componentTitle }}</h1>
+  <ul>
+    <div class="todo-item" *ngFor="let item of items; let i = index">
+      <div class="todo-description">
+        <li (click)="finish(i)" [class.todo-finish]="item.finish">{{item.description}}</li>
+      </div>
+      <div class="todo-delete-button">
+        <button class="btn-delete" [class.disable]="item.finish" (click)="deleteItem(i)" >delete</button>
+      </div>
+    </div>
+  </ul>
+  <input
+    #newItem
+    [(ngModel)]="newItemValue"
+    placeholder="добавить задание"
+    (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+    class="todo-text-input"
+    id="addItemInput" />
+  <button class="btn-add" (click)="addItem(newItem.value)" [disabled]="!newItemValue.trim()">Add</button>
+</div>
