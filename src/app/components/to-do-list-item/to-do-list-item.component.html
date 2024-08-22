@@ -1,0 +1,8 @@
+<div class="todo-item">
+<div class="todo-description">
+  <li (click)="finishItem(todo.id)" [class.todo-finish]="todo.finish">{{todo.id}}. {{todo.description}}</li>
+</div>
+<div class="todo-delete-button">
+  <button class="button button-delete" [class.disable]="todo.finish" (click)="deleteItem(todo.id)" >delete</button>
+</div>
+</div>

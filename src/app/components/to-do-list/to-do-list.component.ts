@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {ToDoInterface} from "../../interfaces/to-do";
+import {TodoTask} from "../../interfaces/to-do";
 import {FormsModule} from "@angular/forms";
+import {MatFormField, MatInput} from "@angular/material/input";
+import {MatIcon} from "@angular/material/icon";
+import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.component";
 
 @Component({
   selector: 'app-to-do-list',
@@ -9,7 +12,11 @@ import {FormsModule} from "@angular/forms";
   imports: [
     NgForOf,
     NgIf,
-    FormsModule
+    FormsModule,
+    MatInput,
+    MatFormField,
+    MatIcon,
+    ToDoListItemComponent
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
@@ -19,38 +26,41 @@ export class ToDoListComponent {
   newItemValue: string = '';
 
 
-  items: ToDoInterface[] | undefined;
+  todoItems: TodoTask[] | undefined;
 
   constructor() {
-    this.items = [
-      {description: 'Проснуться', finish: true},
-      {description: 'Умыться', finish: false},
-      {description: 'Поесть', finish: false},
-      {description: 'Сходить в магазин', finish: false},
+    this.todoItems = [
+      {id:1, description: 'Проснуться', finish: true},
+      {id:2, description: 'Умыться', finish: false},
+      {id:3, description: 'Поесть', finish: false},
+      {id:4, description: 'Сходить в магазин', finish: false},
     ]
   }
 
-  addItem(description: string) {
+  addTask(description: string) {
     if (!description) return;
     this.newItemValue = ''
-    this.items?.push(
-      {description:description, finish: false}
+    // ищем максимальный id
+    const maxId: number = Math.max(...this.todoItems!.map(item => item.id));
+    const nextID: number = maxId+1
+
+    this.todoItems?.push(
+      {id: nextID, description:description, finish: false}
     )
   }
 
-  deleteItem(index: number) {
-    if (!this.items) return;
+  deleteTask(id: number) {
+    if (!this.todoItems) return;
 
-    if (index >= 0 && index < this.items.length) {
-      this.items.splice(index, 1);
-    }
+    this.todoItems = this.todoItems.filter(item => item.id !== id);
   }
 
-  finish(index: number) {
-    if (!this.items) return;
+  toggleFinish(id: number) {
+    if (!this.todoItems) return;
 
-    if (index >= 0 && index < this.items.length) {
-      this.items[index].finish = !this.items[index].finish;
+    const item = this.todoItems.find(item => item.id === id);
+    if (item) {
+      item.finish = !item.finish; // Изменяем значение finish на противоположное
     }
   }
 }

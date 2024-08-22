@@ -6,3 +6,11 @@ body {
   display: flex;
   background-color: #f0f0f0; /* Цвет фона страницы */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.button{
+  height: 20px;
+  width: 70px;
+}
