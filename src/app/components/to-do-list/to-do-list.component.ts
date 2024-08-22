@@ -25,7 +25,6 @@ export class ToDoListComponent {
   componentTitle = 'ToDo List'
   newItemValue: string = '';
 
-
   todoItems: TodoTask[] | undefined;
 
   constructor() {
@@ -37,16 +36,17 @@ export class ToDoListComponent {
     ]
   }
 
-  addTask(description: string) {
-    if (!description) return;
-    this.newItemValue = ''
+  addTask() {
+    if (!this.newItemValue) return;
+
     // ищем максимальный id
     const maxId: number = Math.max(...this.todoItems!.map(item => item.id));
     const nextID: number = maxId+1
 
     this.todoItems?.push(
-      {id: nextID, description:description, finish: false}
+      {id: nextID, description:this.newItemValue, finish: false}
     )
+    this.newItemValue = ''
   }
 
   deleteTask(id: number) {

@@ -8,9 +8,9 @@
            #newItem
            [(ngModel)]="newItemValue"
            placeholder="добавить задание"
-           (keyup.enter)="addTask(newItem.value); newItem.value = ''"
+           (keyup.enter)="addTask(); newItem.value = ''"
            class="todo-text-input"
            id="addItemInput" />
   </mat-form-field>
-  <button class="button button-add" (click)="addTask(newItem.value)" [disabled]="!newItemValue.trim()">Add</button>
+  <button class="button button-add" (click)="addTask()" [disabled]="!newItemValue.trim()">Add</button>
 </div>
