@@ -1,8 +1,13 @@
+@if (!isLoading){
+  <app-spiner></app-spiner>
+} @else {
 <div class="todo-lists">
   <h1>{{ componentTitle }}</h1>
+
   <ul>
     <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)" (finishToDoItem)="toggleFinish(item.id)" />
   </ul>
+  <div class="add-todo-container">
   <mat-form-field appearance="fill">
     <input matInput type="text"
            #newItem
@@ -12,5 +17,7 @@
            class="todo-text-input"
            id="addItemInput" />
   </mat-form-field>
-  <button class="button button-add" (click)="addTask()" [disabled]="!newItemValue.trim()">Add</button>
-</div>
+    <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
+  </div>
+  </div>
+}

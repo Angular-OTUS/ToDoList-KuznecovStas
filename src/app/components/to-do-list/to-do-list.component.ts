@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {TodoTask} from "../../interfaces/to-do";
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatInput} from "@angular/material/input";
 import {MatIcon} from "@angular/material/icon";
 import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.component";
+import {SpinerComponent} from "../spiner/spiner.component";
+import {ButtonComponent} from "../button/button.component";
+import {Button} from "../../interfaces/button";
 
 @Component({
   selector: 'app-to-do-list',
@@ -16,16 +19,24 @@ import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.componen
     MatInput,
     MatFormField,
     MatIcon,
-    ToDoListItemComponent
+    ToDoListItemComponent,
+    SpinerComponent,
+    ButtonComponent
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
 })
-export class ToDoListComponent {
+export class ToDoListComponent implements OnInit{
   componentTitle = 'ToDo List'
   newItemValue: string = '';
-
+  addButton: Button = {
+    title: "Add",
+    color: "black",
+    background: "green"
+  }
   todoItems: TodoTask[] | undefined;
+
+  isLoading: boolean = false
 
   constructor() {
     this.todoItems = [
@@ -34,8 +45,12 @@ export class ToDoListComponent {
       {id:3, description: 'Поесть', finish: false},
       {id:4, description: 'Сходить в магазин', finish: false},
     ]
-  }
 
+
+  }
+  ngOnInit(): void {
+    setTimeout(()=> this.isLoading=true,500)
+  }
   addTask() {
     if (!this.newItemValue) return;
 
@@ -63,4 +78,6 @@ export class ToDoListComponent {
       item.finish = !item.finish; // Изменяем значение finish на противоположное
     }
   }
+
+
 }
