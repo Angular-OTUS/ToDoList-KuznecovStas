@@ -16,8 +16,9 @@ export class ToDoListItemComponent {
   deleteButton: Button
 
   @Input() todo!: TodoTask;
-  @Output() deleteToDoItem = new  EventEmitter<number>;
-  @Output() finishToDoItem = new  EventEmitter<number>;
+  @Output() deleteToDoItem = new EventEmitter<number>;
+  @Output() finishToDoItem = new EventEmitter<number>;
+
   constructor() {
     this.deleteButton = {
       title: "delete",

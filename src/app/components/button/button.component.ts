@@ -13,9 +13,9 @@ import {NgIf} from "@angular/common";
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
 })
+
 export class ButtonComponent {
-@Input({required: true}) button!: Button
-  newItemValue: any;
+  @Input({required: true}) button!: Button
   @Input() disabled!: boolean;
 
 }

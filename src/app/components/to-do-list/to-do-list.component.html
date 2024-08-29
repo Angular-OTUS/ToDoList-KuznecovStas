@@ -1,23 +1,24 @@
-@if (!isLoading){
+@if (!isLoading) {
   <app-spiner></app-spiner>
 } @else {
-<div class="todo-lists">
-  <h1>{{ componentTitle }}</h1>
+  <div class="todo-lists">
+    <h1>{{ componentTitle }}</h1>
 
-  <ul>
-    <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)" (finishToDoItem)="toggleFinish(item.id)" />
-  </ul>
-  <div class="add-todo-container">
-  <mat-form-field appearance="fill">
-    <input matInput type="text"
-           #newItem
-           [(ngModel)]="newItemValue"
-           placeholder="добавить задание"
-           (keyup.enter)="addTask(); newItem.value = ''"
-           class="todo-text-input"
-           id="addItemInput" />
-  </mat-form-field>
-    <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
-  </div>
+    <ul>
+      <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)"
+                           (finishToDoItem)="toggleFinish(item.id)"/>
+    </ul>
+    <div class="add-todo-container">
+      <mat-form-field appearance="fill">
+        <input matInput type="text"
+               #newItem
+               [(ngModel)]="newItemValue"
+               placeholder="добавить задание"
+               (keyup.enter)="addTask(); newItem.value = ''"
+               class="todo-text-input"
+               id="addItemInput"/>
+      </mat-form-field>
+      <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
+    </div>
   </div>
 }
