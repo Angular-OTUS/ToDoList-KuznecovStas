@@ -3,7 +3,6 @@
 } @else {
   <div class="todo-lists">
     <h1>{{ componentTitle }}</h1>
-
     <ul>
       <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)"
                            (finishToDoItem)="toggleFinish(item.id)"/>

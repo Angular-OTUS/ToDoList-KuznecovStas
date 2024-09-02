@@ -1,14 +1,15 @@
 import {Component, Input} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {Button} from "../../interfaces/button";
-import {NgIf} from "@angular/common";
+import {NgIf, NgStyle} from "@angular/common";
 
 @Component({
   selector: 'app-button',
   standalone: true,
   imports: [
     MatProgressSpinner,
-    NgIf
+    NgIf,
+    NgStyle
   ],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
@@ -17,5 +18,4 @@ import {NgIf} from "@angular/common";
 export class ButtonComponent {
   @Input({required: true}) button!: Button
   @Input() disabled!: boolean;
-
 }
