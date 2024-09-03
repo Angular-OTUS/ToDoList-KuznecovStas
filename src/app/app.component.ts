@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
+import {TranslateModule} from "@ngx-translate/core";
+import {ButtonComponent} from "./components/button/button.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToDoListComponent],
+  imports: [RouterOutlet, ToDoListComponent, TranslateModule, ButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

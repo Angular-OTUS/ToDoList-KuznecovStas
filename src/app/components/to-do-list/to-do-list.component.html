@@ -1,23 +1,28 @@
 @if (!isLoading) {
-  <app-spiner></app-spiner>
+  <app-spinner spinnerTitle="LoadingDataFromServer"></app-spinner>
 } @else {
+  <app-language-selector></app-language-selector>
   <div class="todo-lists">
-    <h1>{{ componentTitle }}</h1>
+    <h1>{{ 'TodoTitle' | translate }}</h1>
     <ul>
       <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)"
                            (finishToDoItem)="toggleFinish(item.id)"/>
     </ul>
-    <div class="add-todo-container">
-      <mat-form-field appearance="fill">
-        <input matInput type="text"
-               #newItem
-               [(ngModel)]="newItemValue"
-               placeholder="добавить задание"
-               (keyup.enter)="addTask(); newItem.value = ''"
-               class="todo-text-input"
-               id="addItemInput"/>
-      </mat-form-field>
-      <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
+    <div class="todo-add-container">
+      <div class="todo-add-input">
+        <mat-form-field appearance="fill">
+          <input matInput type="text"
+                 #newItem
+                 [(ngModel)]="newItemValue"
+                 placeholder="{{ 'ToDoAddPlaceholder' | translate}}"
+                 (keyup.enter)="addTask(); newItem.value = ''"
+                 class="todo-text-input"
+                 id="addItemInput"/>
+        </mat-form-field>
+      </div>
+      <div class="todo-add-button">
+        <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
+      </div>
     </div>
   </div>
 }

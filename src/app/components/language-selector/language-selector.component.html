@@ -1,0 +1,9 @@
+<div class="select-language">
+  <div class="language-title">
+    {{ 'SELECT_LANGUAGE' | translate }}
+  </div>
+  <div class="language-buttons">
+    <app-button (click)="switchLang('ru')" [button]="rusButton" [disabled]="selectLanguage=='ru'"/>
+    <app-button (click)="switchLang('en')" [button]="enButton" [disabled]="selectLanguage=='en'"/>
+  </div>
+</div>

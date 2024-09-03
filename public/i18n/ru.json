@@ -1,0 +1,10 @@
+{
+  "SELECT_LANGUAGE": "Переключение языка",
+  "BUTTONS": {
+    "ADD": "добавить",
+    "DELETE": "удалить"
+  },
+  "TodoTitle": "Список задач",
+  "LoadingDataFromServer": "Загрузка данных с сервера",
+  "ToDoAddPlaceholder": "Добавить задачу"
+}

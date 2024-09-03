@@ -5,6 +5,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   text-align: center;
+  min-width: 400px;
 }
 
 ul {
@@ -26,7 +27,25 @@ ul {
   outline: none;
 }
 
+.todo-add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.todo-add-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.todo-add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+}
 
 
 

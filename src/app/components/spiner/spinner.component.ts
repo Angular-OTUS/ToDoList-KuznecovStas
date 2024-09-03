@@ -1,18 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {TranslateModule} from "@ngx-translate/core";
+import {LanguageSelectorService} from "../../services/language-selector.service";
+
 
 @Component({
-  selector: 'app-spiner',
+  selector: 'app-spinner',
   standalone: true,
   imports: [
-    MatProgressSpinner
+    MatProgressSpinner,
+    TranslateModule,
   ],
   templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.scss'
 })
 export class SpinnerComponent {
+  @Input() spinnerTitle!: string
 
-  constructor() {
+  constructor(private lang: LanguageSelectorService) {
 
   }
 }

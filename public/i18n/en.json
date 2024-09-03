@@ -1,0 +1,10 @@
+{
+  "SELECT_LANGUAGE": "Select Language",
+  "BUTTONS": {
+    "ADD": "add",
+    "DELETE": "delete"
+  },
+  "TodoTitle": "ToDo List",
+  "LoadingDataFromServer": "Loading data from server",
+  "ToDoAddPlaceholder": "add todo"
+}
