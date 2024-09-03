@@ -4,5 +4,7 @@
     "ADD": "добавить",
     "DELETE": "удалить"
   },
-  "TodoTitle": "Список задач"
+  "TodoTitle": "Список задач",
+  "LoadingDataFromServer": "Загрузка данных с сервера",
+  "ToDoAddPlaceholder": "Добавить задачу"
 }

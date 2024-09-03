@@ -4,5 +4,7 @@
     "ADD": "add",
     "DELETE": "delete"
   },
-  "TodoTitle": "ToDo List"
+  "TodoTitle": "ToDo List",
+  "LoadingDataFromServer": "Loading data from server",
+  "ToDoAddPlaceholder": "add todo"
 }

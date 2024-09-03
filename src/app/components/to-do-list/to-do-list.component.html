@@ -1,5 +1,5 @@
 @if (!isLoading) {
-  <app-spiner spinnerTitle="Загрузка данных с сервера"></app-spiner>
+  <app-spinner spinnerTitle="LoadingDataFromServer"></app-spinner>
 } @else {
   <app-language-selector></app-language-selector>
   <div class="todo-lists">
@@ -14,7 +14,7 @@
           <input matInput type="text"
                  #newItem
                  [(ngModel)]="newItemValue"
-                 placeholder="добавить задание"
+                 placeholder="{{ 'ToDoAddPlaceholder' | translate}}"
                  (keyup.enter)="addTask(); newItem.value = ''"
                  class="todo-text-input"
                  id="addItemInput"/>

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {TranslateModule} from "@ngx-translate/core";
 import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces/button";
+import {LanguageSelectorService} from "../../services/language-selector.service";
 
 @Component({
   selector: 'app-language-selector',
@@ -27,17 +28,15 @@ export class LanguageSelectorComponent {
     background: "green"
   }
 
-  defaultLanguage: string = "ru"
+
   selectLanguage: string = ""
-  
-  constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang(this.defaultLanguage)
-    this.translate.use(this.defaultLanguage)
-    this.selectLanguage = this.defaultLanguage
+
+  constructor(private lang: LanguageSelectorService) {
+    this.selectLanguage = lang.getDefaultLanguage()
   }
 
   switchLang(lang: string) {
-    this.translate.use(lang)
+    this.lang.use(lang)
     this.selectLanguage = lang
   }
 }
