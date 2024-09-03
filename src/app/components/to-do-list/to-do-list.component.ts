@@ -8,6 +8,7 @@ import {ToDoListItemComponent} from "../to-do-list-item/to-do-list-item.componen
 import {SpinnerComponent} from "../spiner/spinner.component";
 import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-to-do-list',
@@ -21,7 +22,8 @@ import {Button} from "../../interfaces/button";
     MatIcon,
     ToDoListItemComponent,
     SpinnerComponent,
-    ButtonComponent
+    ButtonComponent,
+    TranslateModule
   ],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
@@ -30,10 +32,12 @@ export class ToDoListComponent implements OnInit {
   componentTitle = 'ToDo List'
   newItemValue: string = '';
   addButton: Button = {
-    title: "Add",
+    title: "BUTTONS.ADD",
     color: "black",
     background: "green"
   }
+  
+
   todoItems: TodoTask[] | undefined;
 
   isLoading: boolean = false

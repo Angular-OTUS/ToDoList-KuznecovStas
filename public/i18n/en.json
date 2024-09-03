@@ -1,0 +1,8 @@
+{
+  "SELECT_LANGUAGE": "Select Language",
+  "BUTTONS": {
+    "ADD": "add",
+    "DELETE": "delete"
+  },
+  "TodoTitle": "ToDo List"
+}

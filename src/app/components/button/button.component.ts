@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {Button} from "../../interfaces/button";
 import {NgIf, NgStyle} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-button',
@@ -9,7 +10,8 @@ import {NgIf, NgStyle} from "@angular/common";
   imports: [
     MatProgressSpinner,
     NgIf,
-    NgStyle
+    NgStyle,
+    TranslateModule
   ],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'

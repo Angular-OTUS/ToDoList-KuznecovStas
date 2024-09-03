@@ -21,7 +21,7 @@ export class ToDoListItemComponent {
 
   constructor() {
     this.deleteButton = {
-      title: "delete",
+      title: "BUTTONS.DELETE",
       color: "white",
       background: "red"
     }
