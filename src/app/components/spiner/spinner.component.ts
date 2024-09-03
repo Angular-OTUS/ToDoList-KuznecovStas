@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
@@ -11,6 +11,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   styleUrl: './spinner.component.scss'
 })
 export class SpinnerComponent {
+  @Input() spinnerTitle!: string
 
   constructor() {
 
