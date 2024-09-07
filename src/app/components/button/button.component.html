@@ -1,3 +1,5 @@
-<button [disabled]="disabled" [ngStyle]="{'background-color':button.background, 'color':button.color}"
-        class="button">{{ button.title | translate }}
+<button [appShowTitle]="button.title | translate"
+        [disabled]="disabled"
+        [ngStyle]="{'background-color':button.background, 'color':button.color}"
+        class="button">{{ button.icon | translate }}
 </button>

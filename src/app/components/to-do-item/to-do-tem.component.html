@@ -1,0 +1,15 @@
+<div class="todo-item">
+  <div class="todo-title">
+    <li (click)="showDescription(todo.id)"
+        [class.selected]="selectedItem===todo.id"
+        [class.todo-finish]="todo.finish"
+    >{{ todo.id }}. {{ todo.title }}
+    </li>
+  </div>
+  <div class="todo-delete-button">
+    <app-button (click)="deleteItem(todo.id)" [button]="deleteButton"></app-button>
+  </div>
+  <div class="todo-delete-button">
+    <app-button (click)="finishItem(todo.id)" [button]="finishButton"></app-button>
+  </div>
+</div>

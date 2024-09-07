@@ -8,6 +8,13 @@
   min-width: 400px;
 }
 
+.todo-items-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -27,17 +34,45 @@ ul {
   outline: none;
 }
 
+.todo-description {
+  min-width: 200px;
+  text-align: left;
+  white-space: pre-wrap;
+  background: #8a8a8a;
+  color: #ffffff;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
 .todo-add-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.todo-add-title-description {
+  display: flex;
+  flex-direction: column;
+}
+
 .todo-add-input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25px;
+  margin-bottom: 10px;
+
+  input {
+    height: 25px;
+    width: 200px;
+  }
+}
+
+.todo-add-description {
+  textarea {
+    height: 100px;
+    width: 200px;
+  }
 }
 
 .todo-add-button {

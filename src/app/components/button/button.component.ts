@@ -3,6 +3,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {Button} from "../../interfaces/button";
 import {NgIf, NgStyle} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
+import {ShowTitleDirective} from "../../directives/show-title.directive";
 
 @Component({
   selector: 'app-button',
@@ -11,7 +12,8 @@ import {TranslateModule} from "@ngx-translate/core";
     MatProgressSpinner,
     NgIf,
     NgStyle,
-    TranslateModule
+    TranslateModule,
+    ShowTitleDirective
   ],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
