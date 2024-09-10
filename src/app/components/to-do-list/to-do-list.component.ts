@@ -47,8 +47,7 @@ export class ToDoListComponent implements OnInit {
       width: "100px",
     }
   }
-
-
+  
   todoItems: TodoTask[] | undefined;
   isLoading: boolean = false
   todoDescription: string = ''

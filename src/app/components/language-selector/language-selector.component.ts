@@ -19,15 +19,26 @@ export class LanguageSelectorComponent {
   rusButton: Button = {
     icon: "🇷🇺", //флаг россии вместо иконки
     title: "Русский",
-    color: "black",
-    background: "yellow"
+    class: {
+      color: "black",
+      background: "yellow",
+      height: '50px',
+      width: '50px',
+      fontSize: '20px'
+    }
   }
 
   enButton: Button = {
     icon: "🇺🇸",
     title: "English",
-    color: "black",
-    background: "yellow"
+    class: {
+      color: "black",
+      background: "yellow",
+      height: '50px',
+      width: '50px',
+      fontSize: '20px'
+    }
+
   }
 
 
