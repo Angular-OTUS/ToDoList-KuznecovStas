@@ -26,14 +26,18 @@ export class ToDoItemComponent {
     this.deleteButton = {
       icon: "BUTTONS.DELETE",
       title: "BUTTONS.DELETE_TITLE",
-      color: "white",
-      background: "red"
+      class: {
+        color: "white",
+        background: "red",
+      }
     }
     this.finishButton = {
       icon: "BUTTONS.FINISH",
       title: "BUTTONS.FINISH_TITLE",
-      color: "white",
-      background: "green"
+      class: {
+        color: "white",
+        background: "green",
+      }
     }
   }
 

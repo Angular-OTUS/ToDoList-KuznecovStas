@@ -40,8 +40,12 @@ export class ToDoListComponent implements OnInit {
   addButton: Button = {
     icon: "BUTTONS.ADD",
     title: "BUTTONS.ADD_TITLE",
-    color: "white",
-    background: "green"
+    class: {
+      color: "white",
+      background: "green",
+      height: "60px",
+      width: "100px",
+    }
   }
 
 

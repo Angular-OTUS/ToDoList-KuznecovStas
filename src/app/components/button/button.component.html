@@ -1,5 +1,5 @@
-<button (click)="myCustomClick.emit()"
-        [appShowTitle]="button.title | translate" [disabled]="disabled"
-        [ngStyle]="{'background-color':button.background, 'color':button.color}"
-        class="button">{{ button.icon | translate }}
+<button (click)="myCustomClick.emit()" [appShowTitle]="button.title | translate" [disabled]="disabled"
+        [ngStyle]="button.class"
+        class="button"
+        tuiButton>{{ button.icon | translate }}
 </button>

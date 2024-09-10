@@ -1,6 +1,8 @@
 export interface Button {
   icon: string,
   title: string,
-  color: string,
-  background: string
+  class: { [key: string]: string }
+  // color: string,
+  // background: string,
+  // fontSize: string
 }
