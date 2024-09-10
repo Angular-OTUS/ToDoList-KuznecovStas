@@ -7,9 +7,9 @@
     </li>
   </div>
   <div class="todo-delete-button">
-    <app-button (click)="deleteItem(todo.id)" [button]="deleteButton"></app-button>
+    <app-button (myCustomClick)="deleteItem(todo.id)" [button]="deleteButton"></app-button>
   </div>
   <div class="todo-delete-button">
-    <app-button (click)="finishItem(todo.id)" [button]="finishButton"></app-button>
+    <app-button (myCustomClick)="finishItem(todo.id)" [button]="finishButton"></app-button>
   </div>
 </div>

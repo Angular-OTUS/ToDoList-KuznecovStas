@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {Button} from "../../interfaces/button";
 import {NgIf, NgStyle} from "@angular/common";
@@ -22,4 +22,13 @@ import {ShowTitleDirective} from "../../directives/show-title.directive";
 export class ButtonComponent {
   @Input({required: true}) button!: Button
   @Input() disabled!: boolean;
+  @Output() myCustomClick = new EventEmitter <void>
+
+  onClick() {
+    if (!this.disabled) {
+      this.myCustomClick.emit()
+    }
+  }
 }
+
+

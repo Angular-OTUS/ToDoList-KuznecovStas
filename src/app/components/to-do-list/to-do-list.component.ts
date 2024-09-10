@@ -36,12 +36,11 @@ export class ToDoListComponent implements OnInit {
   componentTitle = 'ToDo List'
   newTitleValue: string = ''
   newDescriptionValue: string = ''
-  selectedItemId: number | null = null
 
   addButton: Button = {
     icon: "BUTTONS.ADD",
     title: "BUTTONS.ADD_TITLE",
-    color: "black",
+    color: "white",
     background: "green"
   }
 
