@@ -6,10 +6,11 @@
   color: blue;
 }
 
-.todo-description {
+.todo-title {
   flex-grow: 1;
   text-align: left;
 }
+
 
 .todo-delete-button {
   text-align: right;
@@ -22,4 +23,8 @@ li {
 .todo-finish {
   color: black;
   text-decoration: line-through;
+}
+
+.selected {
+  background-color: lightblue;
 }

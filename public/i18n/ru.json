@@ -1,10 +1,15 @@
 {
   "SELECT_LANGUAGE": "Переключение языка",
   "BUTTONS": {
-    "ADD": "добавить",
-    "DELETE": "удалить"
+    "ADD": "+",
+    "ADD_TITLE": "Добавить задачу",
+    "DELETE": "✖",
+    "DELETE_TITLE": "Удалить задачу",
+    "FINISH": "✔",
+    "FINISH_TITLE": "Завершить задачу"
   },
   "TodoTitle": "Список задач",
   "LoadingDataFromServer": "Загрузка данных с сервера",
-  "ToDoAddPlaceholder": "Добавить задачу"
+  "ToDoAddTitlePlaceHolder": "Добавить задачу",
+  "ToDoAddDescriptionPlaceHolder": "Добавить описание"
 }

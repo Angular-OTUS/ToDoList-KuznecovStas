@@ -4,25 +4,39 @@
   <app-language-selector></app-language-selector>
   <div class="todo-lists">
     <h1>{{ 'TodoTitle' | translate }}</h1>
-    <ul>
-      <app-to-do-list-item *ngFor="let item of todoItems" [todo]="item" (deleteToDoItem)="deleteTask(item.id)"
-                           (finishToDoItem)="toggleFinish(item.id)"/>
-    </ul>
+    <div class="todo-items-container">
+      <ul>
+        <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
+
+                        [selectedItem]="selectedItem"
+                        (deleteToDoItem)="deleteTask(item.id)"
+                        (finishToDoItem)="toggleFinish(item.id)"
+                        (showDescriptionToDoItem)="showDescription(item.id)"
+        />
+      </ul>
+      <p *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</p>
+    </div>
     <div class="todo-add-container">
-      <div class="todo-add-input">
-        <mat-form-field appearance="fill">
-          <input matInput type="text"
-                 #newItem
-                 [(ngModel)]="newItemValue"
-                 placeholder="{{ 'ToDoAddPlaceholder' | translate}}"
-                 (keyup.enter)="addTask(); newItem.value = ''"
+      <div class="todo-add-title-description">
+        <div class="todo-add-input">
+          <input type="text"
+                 #newTitle
+                 [(ngModel)]="newTitleValue"
+                 placeholder="{{ 'ToDoAddTitlePlaceHolder' | translate}}"
+                 (keyup.enter)=newDescription.focus()
                  class="todo-text-input"
                  id="addItemInput"/>
-        </mat-form-field>
+        </div>
+        <div class="todo-add-description">
+          <textarea #newDescription placeholder="{{ 'ToDoAddDescriptionPlaceHolder' | translate }}"
+                    [(ngModel)]="newDescriptionValue"></textarea>
+        </div>
       </div>
       <div class="todo-add-button">
-        <app-button [button]="addButton" (click)="addTask()" [disabled]="!newItemValue.trim()"/>
+        <app-button [button]="addButton" (click)="addTask()" [disabled]="!newTitleValue.trim()"/>
       </div>
+
     </div>
+
   </div>
 }

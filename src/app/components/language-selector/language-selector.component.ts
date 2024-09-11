@@ -17,15 +17,28 @@ import {LanguageSelectorService} from "../../services/language-selector.service"
 
 export class LanguageSelectorComponent {
   rusButton: Button = {
+    icon: "🇷🇺", //флаг россии вместо иконки
     title: "Русский",
-    color: "black",
-    background: "green"
+    class: {
+      color: "black",
+      background: "yellow",
+      height: '50px',
+      width: '50px',
+      fontSize: '20px'
+    }
   }
 
   enButton: Button = {
+    icon: "🇺🇸",
     title: "English",
-    color: "black",
-    background: "green"
+    class: {
+      color: "black",
+      background: "yellow",
+      height: '50px',
+      width: '50px',
+      fontSize: '20px'
+    }
+
   }
 
 

@@ -1,8 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {Button} from "../../interfaces/button";
-import {NgIf, NgStyle} from "@angular/common";
+import {NgClass, NgIf, NgStyle} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
+import {TuiButton} from '@taiga-ui/core';
+import {ShowTitleDirective} from "../../directives/show-title.directive";
 
 @Component({
   selector: 'app-button',
@@ -11,7 +13,10 @@ import {TranslateModule} from "@ngx-translate/core";
     MatProgressSpinner,
     NgIf,
     NgStyle,
-    TranslateModule
+    TranslateModule,
+    ShowTitleDirective,
+    TuiButton,
+    NgClass
   ],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss'
@@ -20,4 +25,13 @@ import {TranslateModule} from "@ngx-translate/core";
 export class ButtonComponent {
   @Input({required: true}) button!: Button
   @Input() disabled!: boolean;
+  @Output() myCustomClick = new EventEmitter <void>
+
+  onClick() {
+    if (!this.disabled) {
+      this.myCustomClick.emit()
+    }
+  }
 }
+
+
