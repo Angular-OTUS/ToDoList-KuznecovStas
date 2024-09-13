@@ -6,10 +6,20 @@
     "DELETE": "✖",
     "DELETE_TITLE": "Удалить задачу",
     "FINISH": "✔",
-    "FINISH_TITLE": "Завершить задачу"
+    "FINISH_TITLE": "Завершить задачу",
+    "SAVE": "\uD83D\uDCBE",
+    "SAVE_TITLE": "Сохранить задачу",
+    "CLOSE": "Х",
+    "CLOSE_TITLE": "Закрыть"
   },
   "TodoTitle": "Список задач",
   "LoadingDataFromServer": "Загрузка данных с сервера",
   "ToDoAddTitlePlaceHolder": "Добавить задачу",
-  "ToDoAddDescriptionPlaceHolder": "Добавить описание"
+  "ToDoAddDescriptionPlaceHolder": "Добавить описание",
+  "TOASTS": {
+    "TASK_ADDED": "Задача добавлена",
+    "TASK_DELETE": "Задача удалена",
+    "TASK_FINISH": "Задача завершена",
+    "TASK_UPDATE": "Задача изменена"
+  }
 }

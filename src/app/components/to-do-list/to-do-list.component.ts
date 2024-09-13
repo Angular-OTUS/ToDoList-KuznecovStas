@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {TodoTask} from "../../interfaces/to-do";
 import {FormsModule} from "@angular/forms";
@@ -11,6 +11,9 @@ import {Button} from "../../interfaces/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {LanguageSelectorComponent} from "../language-selector/language-selector.component";
 import {TuiInputInline} from "@taiga-ui/kit";
+import {TodoStoreService} from "../../services/todo-store.service";
+import {Subscription} from "rxjs";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-to-do-list',
@@ -32,7 +35,7 @@ import {TuiInputInline} from "@taiga-ui/kit";
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
 })
-export class ToDoListComponent implements OnInit {
+export class ToDoListComponent implements OnInit, OnDestroy {
   componentTitle = 'ToDo List'
   newTitleValue: string = ''
   newDescriptionValue: string = ''
@@ -47,35 +50,35 @@ export class ToDoListComponent implements OnInit {
       width: "100px",
     }
   }
-  
+
   todoItems: TodoTask[] | undefined;
   isLoading: boolean = false
   todoDescription: string = ''
   selectedItem: number | null = null;
+  editItem?: TodoTask | null = null;
+  private subscription = new Subscription();
 
-  constructor() {
-    this.todoItems = [
-      {id: 1, title: 'Проснуться', description: "утро добрым не бывает", finish: true},
-      {id: 2, title: 'Умыться', description: '', finish: false},
-      {id: 3, title: 'Поесть', description: '', finish: false},
-      {id: 7, title: 'Сходить в магазин', description: 'Список покупок:\n1. Хлеб,\n2. Макароны', finish: false},
-    ]
+  constructor(
+    private store: TodoStoreService,
+    private toastService: ToastService) {
+
+    this.subscription.add(
+      this.store.todoItems$.subscribe(items => {
+        this.todoItems = items;
+      })
+    );
   }
 
   ngOnInit(): void {
+
     setTimeout(() => this.isLoading = true, 500)
   }
 
   addTask() {
     if (!this.newTitleValue) return;
 
-    // ищем максимальный id
-    const maxId: number = Math.max(...this.todoItems!.map(item => item.id));
-    const nextID: number = maxId + 1
-
-    this.todoItems?.push(
-      {id: nextID, title: this.newTitleValue, description: this.newDescriptionValue, finish: false}
-    )
+    this.store.addTask(this.newTitleValue, this.newDescriptionValue)
+    this.toastService.showToast("TOASTS.TASK_ADDED")
     this.newDescriptionValue = ''
     this.newTitleValue = ''
   }
@@ -83,16 +86,28 @@ export class ToDoListComponent implements OnInit {
   deleteTask(id: number) {
     if (!this.todoItems) return;
 
-    this.todoItems = this.todoItems.filter(item => item.id !== id);
+    this.store.deleteTask(id)
+    this.toastService.showToast("TOASTS.TASK_DELETE")
   }
 
 
+  updateTask(task: TodoTask) {
+    if (!this.todoItems) return;
+    this.store.updateTask(task.id, task)
+    this.toastService.showToast("TOASTS.TASK_UPDATE")
+
+  }
+
   toggleFinish(id: number) {
     if (!this.todoItems) return;
-
-    const item = this.todoItems.find(item => item.id === id);
+    const item: TodoTask | undefined = this.todoItems.find(item => item.id === id);
     if (item) {
-      item.finish = !item.finish; // Изменяем значение finish на противоположное
+
+      this.store.updateTask(id, {...item, finish: !item.finish})
+      // выводим если задача завершена
+      if (!item.finish) {
+        this.toastService.showToast("TOASTS.TASK_FINISH")
+      }
     }
   }
 
@@ -109,4 +124,9 @@ export class ToDoListComponent implements OnInit {
       this.todoDescription = ''
     }
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
+
 }

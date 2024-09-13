@@ -7,12 +7,12 @@
     <div class="todo-items-container">
       <ul>
         <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
-
                         [selectedItem]="selectedItem"
                         (deleteToDoItem)="deleteTask(item.id)"
                         (finishToDoItem)="toggleFinish(item.id)"
                         (showDescriptionToDoItem)="showDescription(item.id)"
-        />
+                        (updateToDoItem)="updateTask(item)"
+        ></app-to-do-item>
       </ul>
       <p *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</p>
     </div>
