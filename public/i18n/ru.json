@@ -21,5 +21,15 @@
     "TASK_DELETE": "Задача удалена",
     "TASK_FINISH": "Задача завершена",
     "TASK_UPDATE": "Задача изменена"
+  },
+  "Status": {
+    "IN_PROGRESS": "В процессе",
+    "COMPLETE": "Завершено"
+  },
+  "Filter": {
+    "TEXT": "Фильтр по статусу",
+    "ALL": "Все",
+    "IN_PROGRESS": "В процессе",
+    "COMPLETE": "Завершено"
   }
 }

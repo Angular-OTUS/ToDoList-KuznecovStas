@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Проснуться",
+      "description": "утро добрым не бывает",
+      "status": "Completed"
+    },
+    {
+      "id": "2",
+      "title": "Умыться",
+      "description": "",
+      "status": "InProgress"
+    },
+    {
+      "id": "4",
+      "title": "Сделать ДЗ",
+      "description": "Интересный процесс",
+      "status": "Completed"
+    },
+    {
+      "id": "5",
+      "title": "Поесть",
+      "description": "",
+      "status": "InProgress"
+    }
+  ]
+}

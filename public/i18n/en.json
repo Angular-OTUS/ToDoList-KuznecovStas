@@ -21,5 +21,15 @@
     "TASK_DELETE": "Task deleted",
     "TASK_FINISH": "Task finished",
     "TASK_UPDATE": "Task updated"
+  },
+  "Status": {
+    "IN_PROGRESS": "In Progress",
+    "COMPLETE": "Complete"
+  },
+  "Filter": {
+    "TEXT": "Filter by status",
+    "ALL": "All",
+    "IN_PROGRESS": "In Progress",
+    "COMPLETE": "Complete"
   }
 }

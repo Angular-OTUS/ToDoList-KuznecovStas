@@ -1,0 +1,21 @@
+<div class="todo-add-container">
+  <div class="todo-add-title-description">
+    <div class="todo-add-input">
+      <input #newTitle
+             (keyup.enter)=newDescription.focus()
+             [(ngModel)]="newTitleValue"
+             class="todo-text-input"
+             id="addItemInput"
+             placeholder="{{ 'ToDoAddTitlePlaceHolder' | translate}}"
+             type="text"/>
+    </div>
+    <div class="todo-add-description">
+          <textarea #newDescription [(ngModel)]="newDescriptionValue"
+                    placeholder="{{ 'ToDoAddDescriptionPlaceHolder' | translate }}"></textarea>
+    </div>
+  </div>
+  <div class="todo-add-button">
+    <app-button (click)="addTask()" [button]="addButton" [disabled]="!newTitleValue.trim()"/>
+  </div>
+
+</div>
