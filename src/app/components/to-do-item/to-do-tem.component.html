@@ -1,10 +1,16 @@
 <div class="todo-item">
   <div class="todo-title">
-    <li (click)="showDescription(todo.id)"
-        [class.selected]="selectedItem===todo.id"
-        [class.todo-finish]="todo.finish"
-    >{{ todo.id }}. {{ todo.title }}
-    </li>
+    @if (isEdit) {
+      <input [(ngModel)]="todo.title" class="input"/>
+      <app-button (click)="updateTitle()" [button]="saveButton"></app-button>
+    } @else {
+      <li (click)="showDescription(todo.id)"
+          (dblclick)="editTask(todo.id)"
+          [class.selected]="selectedItem===todo.id"
+          [class.todo-finish]="todo.finish"
+      >{{ todo.id }}. {{ todo.title }}
+      </li>
+    }
   </div>
   <div class="todo-delete-button">
     <app-button (myCustomClick)="deleteItem(todo.id)" [button]="deleteButton"></app-button>
