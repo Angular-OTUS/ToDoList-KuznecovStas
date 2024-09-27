@@ -19,8 +19,8 @@ export class TodoStoreService {
   constructor() {
   }
 
-  getAllTask() {
-    return this._todoItemsSubject.value
+  getAllTasks() {
+    return [...this._todoItemsSubject.value];
   }
 
   addTask(title: string, description: string) {
@@ -35,12 +35,16 @@ export class TodoStoreService {
   }
 
   deleteTask(id: number) {
-    this._todoItems = this._todoItems?.filter(item => item.id !== id);
+    this._todoItems = this._todoItems.filter(item => item.id !== id);
     this._todoItemsSubject.next(this._todoItems)
   }
 
   updateTask(id: number, item: TodoTask) {
     const index = this._todoItems.findIndex(item => item.id === id);
+    if (index === -1) {
+      console.error(`Task with id ${id} not found`);
+      return;
+    }
     this._todoItems[index] = item;
     this._todoItemsSubject.next(this._todoItems)
   }
