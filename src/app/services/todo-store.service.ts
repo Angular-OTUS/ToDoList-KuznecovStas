@@ -1,82 +1,86 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {TodoTask} from "../interfaces/to-do";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable, of, Subject, takeUntil, tap} from "rxjs";
 import {HttpClient} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoStoreService {
+export class TodoStoreService implements OnDestroy {
   private _apiBaseURL: string = 'http://localhost:3000';
   private _todoItems: TodoTask[] = [];
 
   private _todoItemsSubject: BehaviorSubject<TodoTask[]> = new BehaviorSubject<TodoTask[]>(this._todoItems);
-  todoItems$ = this._todoItemsSubject.asObservable();
+  public todoItems$ = this._todoItemsSubject.asObservable();
+  private destroyed$: Subject<void> = new Subject();
 
   constructor(private http: HttpClient) {
     this.getAllTasks()
   }
-
-  getAllTasks() {
-    this.http.get<TodoTask[]>(this._apiBaseURL + '/todos').subscribe(data => {
+  
+  public getAllTasks(): TodoTask[] {
+    this.http.get<TodoTask[]>(this._apiBaseURL + '/todos')
+      .pipe(takeUntil(this.destroyed$)).subscribe(data => {
       this._todoItems = data;
       this._todoItemsSubject.next(this._todoItems);
     });
     return [...this._todoItemsSubject.value];
   }
 
-  getTaskByStatus(status: string | null) {
+  public getTaskByStatus(status: string | null): TodoTask[] {
     return this._todoItems.filter(item => item.status === status);
   }
 
-  addTask(title: string, description: string) {
+  public addTask(title: string, description: string): Observable<any> {
     // ищем максимальный id
     const maxId: number = Math.max(...this._todoItems!.map(item => item.id));
     const nextID: number = maxId + 1
 
     // отправляем на сервер
-    this.http.post(this._apiBaseURL + '/todos', {
+    return this.http.post(this._apiBaseURL + '/todos', {
       id: nextID.toString(),
       title: title,
       description: description,
       status: 'InProgress'
-    }).subscribe({
-      next: () => {
+    }).pipe(
+      takeUntil(this.destroyed$),
+      tap(() => {
         this._todoItems?.push({id: nextID, title: title, description: description, status: 'InProgress'})
         this._todoItemsSubject.next(this._todoItems);
-      },
-      error: (error) => {
-        console.error('todo-store-service|deleteTask', error);
-        return;
-      }
-    });
-
-
+      })
+    );
   }
 
-  deleteTask(id: number) {
+  public deleteTask(id: number): Observable<any> {
     // отправляем на сервер
-    this.http.delete(this._apiBaseURL + '/todos/' + id).subscribe({
-      next: () => {
-        this._todoItems = this._todoItems.filter(item => item.id !== id);
-        this._todoItemsSubject.next(this._todoItems);
-      },
-      error: (error) => {
-        console.error('todo-store-service|deleteTask', error);
-      }
-    });
+    return this.http.delete(this._apiBaseURL + '/todos/' + id)
+      .pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this._todoItems = this._todoItems.filter(item => item.id !== id);
+          this._todoItemsSubject.next(this._todoItems);
+        })
+      );
   }
 
-  updateTask(id: number, item: TodoTask) {
-    const index = this._todoItems.findIndex(item => item.id === id);
+  public updateTask(id: number, item: TodoTask): Observable<any> {
+    const index: number = this._todoItems.findIndex(item => item.id === id);
     if (index === -1) {
       console.error(`todo-store-service|deleteTask - Task with id ${id} not found`);
-      return;
+      return of(null); // Возвращаем Observable с null в случае ошибки
     }
     this._todoItems[index] = item;
-    this._todoItemsSubject.next(this._todoItems)
-
+    this._todoItemsSubject.next(this._todoItems);
     // отправляем на сервер
-    this.http.put(this._apiBaseURL + '/todos/' + id, item).subscribe();
+    return this.http.put(this._apiBaseURL + '/todos/' + id, item)
+      .pipe(
+        takeUntil(this.destroyed$)
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }

@@ -22,7 +22,7 @@
                         (updateToDoItem)="updateTask(item)"
         ></app-to-do-item>
       </ul>
-      <p *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</p>
+      <span *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</span>
     </div>
     <app-todo-create-item></app-todo-create-item>
 

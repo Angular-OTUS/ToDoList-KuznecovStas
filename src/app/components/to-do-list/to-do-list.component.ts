@@ -11,7 +11,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {LanguageSelectorComponent} from "../language-selector/language-selector.component";
 import {TuiInputInline} from "@taiga-ui/kit";
 import {TodoStoreService} from "../../services/todo-store.service";
-import {Subscription} from "rxjs";
+import {catchError, of, Subject, Subscription, takeUntil, tap} from "rxjs";
 import {ToastService} from "../../services/toast.service";
 import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
 
@@ -41,11 +41,12 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
 
   todoItems: TodoTask[] | undefined;
-  isLoading: boolean = false
+  isLoading?: boolean;
   todoDescription: string = ''
   selectedItem: number | null = null;
   selectedStatus: string | null = null;
   private subscription = new Subscription();
+  private destroyed$: Subject<void> = new Subject();
 
   constructor(
     private store: TodoStoreService,
@@ -63,43 +64,54 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   }
 
 
-  deleteTask(id: number) {
-    if (!this.todoItems) return;
+  public deleteTask(id: number): void {
+    if (this.todoItems) {
+      this.store.deleteTask(id).pipe(
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.toastService.showToast("TOASTS.TASK_DELETE")
+        }),
+        catchError((error) => {
+          console.error('todo-store-service|deleteTask', error);
+          this.toastService.showToast("TOASTS.TASK_ERROR")
+          return of(null);
+        })
+      ).subscribe(
+      )
 
-    this.store.deleteTask(id)
-    this.toastService.showToast("TOASTS.TASK_DELETE")
-  }
-
-  filterTasks(): void {
-    if (!this.todoItems) return;
-    if (this.selectedStatus === 'null') {
-      this.todoItems = this.store.getAllTasks()
-    } else {
-      this.todoItems = this.store.getTaskByStatus(this.selectedStatus)
     }
-
   }
 
-  updateTask(task: TodoTask) {
-    if (!this.todoItems) return;
-    this.store.updateTask(task.id, task)
-    this.toastService.showToast("TOASTS.TASK_UPDATE")
-
-  }
-
-  setStatus(id: number) {
-    if (!this.todoItems) return;
-    const item: TodoTask | undefined = this.todoItems.find(item => item.id === id);
-    if (item) {
-      this.store.updateTask(id, {...item, status: item.status === 'InProgress' ? 'Completed' : 'InProgress'})
-      // выводим если задача завершена
-      if (item.status === 'Completed') {
-        this.toastService.showToast("TOASTS.TASK_FINISH")
+  public filterTasks(): void {
+    if (this.todoItems) {
+      if (this.selectedStatus === 'null') {
+        this.todoItems = this.store.getAllTasks()
+      } else {
+        this.todoItems = this.store.getTaskByStatus(this.selectedStatus)
       }
     }
+
   }
 
-  showDescription(id: number | null) {
+  public updateTask(task: TodoTask): void {
+    if (this.todoItems) {
+      this.store.updateTask(task.id, task)
+        .pipe(
+          takeUntil(this.destroyed$),
+          tap(() => {
+            this.toastService.showToast("TOASTS.TASK_UPDATE")
+          }),
+          catchError((error) => {
+            console.error('todo-store-service|deleteTask', error);
+            this.toastService.showToast("TOASTS.TASK_ERROR")
+            return of(null);
+          })
+        ).subscribe()
+
+    }
+  }
+
+  public showDescription(id: number | null): void {
     this.selectedItem = this.selectedItem === id ? null : id;
     if (this.selectedItem == null) {
       this.todoDescription = ''
@@ -115,6 +127,29 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
+  }
+
+  public setStatus(id: number): void {
+    if (this.todoItems) {
+      const item: TodoTask | undefined = this.todoItems.find(item => item.id === id);
+      if (item) {
+        this.store.updateTask(id, {...item, status: item.status === 'InProgress' ? 'Completed' : 'InProgress'})
+          .pipe(takeUntil(this.destroyed$),
+            tap(() => {
+              // выводим если задача завершена
+              if (item.status === 'InProgress') {
+                this.toastService.showToast("TOASTS.TASK_FINISH")
+              }
+            }),
+            catchError((error) => {
+                console.error('to-do-list.component| setStatus:', id, error);
+                this.toastService.showToast("TOASTS.TASK_ERROR")
+                return of(null);
+              },
+            )).subscribe()
+
+      }
+    }
   }
 
 }

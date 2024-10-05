@@ -20,7 +20,8 @@
     "TASK_ADDED": "Task added",
     "TASK_DELETE": "Task deleted",
     "TASK_FINISH": "Task finished",
-    "TASK_UPDATE": "Task updated"
+    "TASK_UPDATE": "Task updated",
+    "TASK_ERROR": "Error while performing operation"
   },
   "Status": {
     "IN_PROGRESS": "In Progress",
