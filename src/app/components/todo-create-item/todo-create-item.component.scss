@@ -1,0 +1,36 @@
+.todo-add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-add-title-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-add-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+
+  input {
+    height: 25px;
+    width: 200px;
+  }
+}
+
+.todo-add-description {
+  textarea {
+    height: 100px;
+    width: 200px;
+  }
+}
+
+.todo-add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+}

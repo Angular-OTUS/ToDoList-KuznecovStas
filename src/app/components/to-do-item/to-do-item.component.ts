@@ -4,6 +4,7 @@ import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces/button";
 import {NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-to-do-item',
@@ -13,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     NgIf,
     ReactiveFormsModule,
     FormsModule,
+    TranslateModule,
   ],
   templateUrl: './to-do-tem.component.html',
   styleUrl: './to-do-item.component.scss'

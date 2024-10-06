@@ -4,39 +4,28 @@
   <app-language-selector></app-language-selector>
   <div class="todo-lists">
     <h1>{{ 'TodoTitle' | translate }}</h1>
+    <div class="filter-container">
+      <label for="statusFilter"> {{ 'Filter.TEXT'| translate }} </label>
+      <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="filterTasks()">
+        <option [value]="null">{{ 'Filter.ALL'| translate }}</option>
+        <option value="InProgress">{{ 'Filter.IN_PROGRESS'| translate }}</option>
+        <option value="Completed">{{ 'Filter.COMPLETE'| translate }}</option>
+      </select>
+    </div>
     <div class="todo-items-container">
       <ul>
         <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
                         [selectedItem]="selectedItem"
                         (deleteToDoItem)="deleteTask(item.id)"
-                        (finishToDoItem)="toggleFinish(item.id)"
+                        (finishToDoItem)="setStatus(item.id)"
                         (showDescriptionToDoItem)="showDescription(item.id)"
                         (updateToDoItem)="updateTask(item)"
         ></app-to-do-item>
       </ul>
-      <p *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</p>
+      <span *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</span>
     </div>
-    <div class="todo-add-container">
-      <div class="todo-add-title-description">
-        <div class="todo-add-input">
-          <input type="text"
-                 #newTitle
-                 [(ngModel)]="newTitleValue"
-                 placeholder="{{ 'ToDoAddTitlePlaceHolder' | translate}}"
-                 (keyup.enter)=newDescription.focus()
-                 class="todo-text-input"
-                 id="addItemInput"/>
-        </div>
-        <div class="todo-add-description">
-          <textarea #newDescription placeholder="{{ 'ToDoAddDescriptionPlaceHolder' | translate }}"
-                    [(ngModel)]="newDescriptionValue"></textarea>
-        </div>
-      </div>
-      <div class="todo-add-button">
-        <app-button [button]="addButton" (click)="addTask()" [disabled]="!newTitleValue.trim()"/>
-      </div>
+    <app-todo-create-item></app-todo-create-item>
 
-    </div>
 
   </div>
 }
