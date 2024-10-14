@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {TodoTask} from "../../interfaces/to-do";
+import {TodoTask} from "../../interfaces";
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatInput} from "@angular/material/input";
 import {MatIcon} from "@angular/material/icon";
@@ -10,11 +10,10 @@ import {ButtonComponent} from "../button/button.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {LanguageSelectorComponent} from "../language-selector/language-selector.component";
 import {TuiInputInline} from "@taiga-ui/kit";
-import {TodoStoreService} from "../../services/todo-store.service";
+import {ToastService, TodoStoreService} from "../../services";
 import {catchError, of, Subject, Subscription, takeUntil, tap} from "rxjs";
-import {ToastService} from "../../services/toast.service";
 import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
-import {ActivatedRoute, RouterOutlet} from "@angular/router";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-to-do-list',
@@ -51,8 +50,7 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: TodoStoreService,
-    private toastService: ToastService,
-    private route: ActivatedRoute) {
+    private toastService: ToastService) {
 
     this.subscription.add(
       this.store.todoItems$.subscribe(items => {

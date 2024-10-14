@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastService} from "../../services/toast.service";
+import {ToastService} from "../../services/";
 import {NgForOf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 import {ButtonComponent} from "../button/button.component";
-import {Button} from "../../interfaces/button";
+import {Button} from "../../interfaces";
 
 @Component({
   selector: 'app-toast',

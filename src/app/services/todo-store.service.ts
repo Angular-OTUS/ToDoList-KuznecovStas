@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {TodoTask} from "../interfaces/to-do";
+import {TodoTask} from "../interfaces";
 import {BehaviorSubject, Observable, of, Subject, takeUntil, tap} from "rxjs";
 import {HttpClient} from '@angular/common/http';
 

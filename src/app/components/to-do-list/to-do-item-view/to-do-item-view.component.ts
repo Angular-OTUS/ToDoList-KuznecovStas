@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
-import {TodoStoreService} from "../../../services/todo-store.service";
-import {TodoTask} from '../../../interfaces/to-do';
+import {TodoStoreService} from "../../../services";
+import {Button, TodoTask} from '../../../interfaces';
 import {tap} from 'rxjs';
 import {JsonPipe, NgIf} from "@angular/common";
 import {ButtonComponent} from "../../button/button.component";
-import {Button} from "../../../interfaces/button";
 
 @Component({
   selector: 'app-to-do-item-view',

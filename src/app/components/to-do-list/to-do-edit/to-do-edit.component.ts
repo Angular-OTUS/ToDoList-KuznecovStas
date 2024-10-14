@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {TodoTask} from "../../../interfaces/to-do";
+import {Button, TodoTask} from "../../../interfaces";
 import {Router} from "@angular/router";
 import {JsonPipe} from "@angular/common";
 import {ButtonComponent} from "../../button/button.component";
-import {Button} from "../../../interfaces/button";
-import {TodoStoreService} from "../../../services/todo-store.service";
+import {TodoStoreService} from "../../../services";
 import {Subject, takeUntil} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";

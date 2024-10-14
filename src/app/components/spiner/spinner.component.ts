@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {TranslateModule} from "@ngx-translate/core";
-import {LanguageSelectorService} from "../../services/language-selector.service";
 
 
 @Component({
@@ -17,7 +16,7 @@ import {LanguageSelectorService} from "../../services/language-selector.service"
 export class SpinnerComponent {
   @Input() spinnerTitle!: string
 
-  constructor(private lang: LanguageSelectorService) {
+  constructor() {
 
   }
 }

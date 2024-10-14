@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TodoTask} from "../../../interfaces/to-do";
+import {Button, TodoTask} from "../../../interfaces";
 import {ButtonComponent} from "../../button/button.component";
-import {Button} from "../../../interfaces/button";
 import {NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
