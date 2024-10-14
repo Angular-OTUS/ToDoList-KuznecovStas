@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoCreateItemComponent } from './todo-create-item.component';
+import { NotFoundComponent } from './not-found.component';
 
-describe('TodoCreateItemComponent', () => {
-  let component: TodoCreateItemComponent;
-  let fixture: ComponentFixture<TodoCreateItemComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodoCreateItemComponent]
+      imports: [NotFoundComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TodoCreateItemComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

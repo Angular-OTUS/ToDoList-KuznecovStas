@@ -10,7 +10,16 @@
     "SAVE": "\uD83D\uDCBE",
     "SAVE_TITLE": "Save",
     "CLOSE": "Х",
-    "CLOSE_TITLE": "Close"
+    "CLOSE_TITLE": "Close",
+    "CANCEL": "Cancel",
+    "CANCEL_TITLE": "Cancel",
+    "EDIT": "✎",
+    "EDIT_TITLE": "Edit"
+  },
+  "LABEL": {
+    "TITLE": "Title",
+    "DESCRIPTION": "Description",
+    "STATUS": "Status"
   },
   "TodoTitle": "ToDo List",
   "LoadingDataFromServer": "Loading data from server",

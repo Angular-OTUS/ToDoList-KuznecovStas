@@ -1,16 +1,11 @@
 <div class="todo-item">
   <div class="todo-title">
-    @if (isEdit) {
-      <input [(ngModel)]="todo.title" class="input"/>
-      <app-button (click)="updateTitle()" [button]="saveButton"></app-button>
-    } @else {
-      <li (click)="showDescription(todo.id)"
-          (dblclick)="editTask(todo.id)"
-          [class.selected]="selectedItem===todo.id"
-          [class.todo-finish]="todo.status === 'Completed'">
-        {{ todo.id }}. {{ todo.title }}
-      </li>
-    }
+    <li (click)="goToTodo(todo.id)"
+        [class.selected]="selectedItem===todo.id"
+        [class.todo-finish]="todo.status === 'Completed'">
+      {{ todo.id }}. {{ todo.title }}
+    </li>
+
   </div>
   <div class="todo-status-checkbox">
     <input (change)="finishItem(todo.id)" [checked]="todo.status === 'Completed'" type="checkbox"/>

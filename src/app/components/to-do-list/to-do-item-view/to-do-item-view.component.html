@@ -1,0 +1,10 @@
+<div *ngIf="!isTaskEdit()">
+  <div class="description">
+    Описание: {{ todo?.description || 'Описание отсутствует' }}
+  </div>
+  <div class="buttons">
+    <app-button (click)="goBack()" [button]="goBackButton"/>
+    <app-button (click)="editTodo()" [button]="editTodoButton"></app-button>
+  </div>
+</div>
+<router-outlet/>

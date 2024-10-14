@@ -1,0 +1,20 @@
+
+
+<div class="todo-edit">
+  <div class="todo-edit-title">
+    <label>{{ 'LABEL.TITLE' | translate }}</label>
+    <input  type="text" [(ngModel)]='todo.title'/>
+  </div>
+  <div class="todo-edit-description">
+    <label>{{ 'LABEL.DESCRIPTION' | translate }}</label>
+    <textarea [(ngModel)]='todo.description'></textarea>
+  </div>
+  <div class="todo-edit-status">
+    <label>{{ 'LABEL.STATUS' | translate }}</label>
+    <select [(ngModel)]='todo.status'>
+      <option value="InProgress">{{ 'Status.IN_PROGRESS' | translate }}</option>
+      <option value="Completed">{{ 'Status.COMPLETE' | translate }}</option>
+    </select>
+  </div>
+<app-button (click)="goBack()" [button]="cancelButton"/>
+<app-button (click)="saveTodo()" [button]="saveButton"/>

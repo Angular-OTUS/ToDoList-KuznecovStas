@@ -10,7 +10,18 @@
     "SAVE": "\uD83D\uDCBE",
     "SAVE_TITLE": "Сохранить задачу",
     "CLOSE": "Х",
-    "CLOSE_TITLE": "Закрыть"
+    "CLOSE_TITLE": "Закрыть",
+    "CANCEL": "Отмена",
+    "CANCEL_TITLE": "Отменить",
+    "EDIT": "✎",
+    "EDIT_TITLE": "Редактировать",
+    "GO_BACK": "Назад",
+    "GO_BACK_TITLE": "Вернуться назад"
+  },
+  "LABEL": {
+    "TITLE": "Задача",
+    "DESCRIPTION": "Описание",
+    "STATUS": "Статус"
   },
   "TodoTitle": "Список задач",
   "LoadingDataFromServer": "Загрузка данных с сервера",
