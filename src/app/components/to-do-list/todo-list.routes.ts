@@ -7,11 +7,6 @@ import {ROUTERS} from "../../constants/routers";
 
 export const todoListRoutes: Routes = [
   {
-    path: '',
-    redirectTo: ROUTERS.ADD_TASK,
-    pathMatch: 'full'
-  },
-  {
     path: ROUTERS.ADD_TASK,
     component: TodoCreateItemComponent
   },

@@ -15,8 +15,4 @@ import {TranslateModule} from "@ngx-translate/core";
 })
 export class SpinnerComponent {
   @Input() spinnerTitle!: string
-
-  constructor() {
-
-  }
 }

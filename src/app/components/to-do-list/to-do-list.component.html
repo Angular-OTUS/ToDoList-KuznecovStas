@@ -11,16 +11,20 @@
         <option value="Completed">{{ 'Filter.COMPLETE'| translate }}</option>
       </select>
     </div>
-    <div class="todo-items-container">
-      <ul>
-        <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
-                        [selectedItem]="selectedItem"
-                        (deleteToDoItem)="deleteTask(item.id)"
-                        (finishToDoItem)="setStatus(item.id)"
-        ></app-to-do-item>
-      </ul>
-    </div>
-    <router-outlet/>
-  </div>
 
+    <div class="add-todo-container">
+
+      <app-button (click)="addTask()" [button]=addTaskButton></app-button>
+      <div class="todo-items-container">
+        <ul>
+          <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
+                          [selectedItem]="selectedItem"
+                          (deleteToDoItem)="deleteTask(item.id)"
+                          (finishToDoItem)="setStatus(item.id)"
+          ></app-to-do-item>
+        </ul>
+      </div>
+      <router-outlet/>
+    </div>
+  </div>
 }

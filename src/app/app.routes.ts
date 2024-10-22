@@ -7,11 +7,11 @@ import {ROUTERS} from "./constants/routers";
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: ROUTERS.TASKS,
+    redirectTo: ROUTERS.VIEW_TASKS,
     pathMatch: 'full'
   },
   {
-    path: ROUTERS.TASKS,
+    path: ROUTERS.VIEW_TASKS,
     component: ToDoListComponent,
     children: todoListRoutes // инклудим из другого файла
   },

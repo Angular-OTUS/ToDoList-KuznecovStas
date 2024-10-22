@@ -45,12 +45,13 @@ export class ToDoItemViewComponent implements OnInit {
         background: "green",
       }
     }
+
   }
 
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = +params['id'];
+      const id = Number(params['id']);
       this.store.getTaskByID(id).pipe(
         tap(data => {
             this.todo = data;
@@ -60,8 +61,7 @@ export class ToDoItemViewComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/tasks']);
-    //this.location.back() // не корректное поведение при нажатие нескольких todo в списке
+    this.router.navigate(['/']);
   }
 
 
@@ -70,7 +70,6 @@ export class ToDoItemViewComponent implements OnInit {
   }
 
   isTaskEdit() {
-    //console.log(this.route.snapshot.firstChild)
     return this.route.snapshot.firstChild !== null; // если есть дочерний роутер, значит выбрана задача
   }
 }

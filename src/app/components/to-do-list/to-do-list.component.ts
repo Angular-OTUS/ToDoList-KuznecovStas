@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {TodoTask} from "../../interfaces";
+import {Button, TodoTask} from "../../interfaces";
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatInput} from "@angular/material/input";
 import {MatIcon} from "@angular/material/icon";
@@ -13,7 +13,8 @@ import {TuiInputInline} from "@taiga-ui/kit";
 import {ToastService, TodoStoreService} from "../../services";
 import {catchError, of, Subject, Subscription, takeUntil, tap} from "rxjs";
 import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
-import {RouterOutlet} from "@angular/router";
+import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
+import {ROUTERS} from "../../constants/routers";
 
 @Component({
   selector: 'app-to-do-list',
@@ -38,9 +39,14 @@ import {RouterOutlet} from "@angular/router";
   styleUrl: './to-do-list.component.scss'
 })
 export class ToDoListComponent implements OnInit, OnDestroy {
-  componentTitle = 'ToDo List'
-
-
+  addTaskButton: Button = {
+    title: 'BUTTONS.ADD_TITLE',
+    icon: 'BUTTONS.ADD',
+    class: {
+      color: 'white',
+      background: 'green',
+    }
+  }
   todoItems: TodoTask[] | undefined;
   isLoading?: boolean;
   selectedItem: number | null = null;
@@ -50,7 +56,9 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: TodoStoreService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private router: Router,
+    private route: ActivatedRoute) {
 
     this.subscription.add(
       this.store.todoItems$.subscribe(items => {
@@ -119,4 +127,7 @@ export class ToDoListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
   }
 
+  addTask() {
+    this.router.navigate([ROUTERS.ADD_TASK], {relativeTo: this.route});
+  }
 }

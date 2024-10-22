@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class TodoStoreService implements OnDestroy {
-  public todoItem: TodoTask | undefined;
   private _apiBaseURL: string = 'http://localhost:3000';
   private _todoItems: TodoTask[] = [];
   private _todoItemsSubject: BehaviorSubject<TodoTask[]> = new BehaviorSubject<TodoTask[]>(this._todoItems);
