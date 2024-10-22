@@ -3,8 +3,8 @@ import {Button, TodoTask} from "../../../interfaces";
 import {Router} from "@angular/router";
 import {JsonPipe} from "@angular/common";
 import {ButtonComponent} from "../../button/button.component";
-import {TodoStoreService} from "../../../services";
-import {Subject, takeUntil} from "rxjs";
+import {ToastService, TodoStoreService} from "../../../services";
+import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 
@@ -27,7 +27,8 @@ export class ToDoEditComponent implements OnInit {
   private destroyed$: Subject<void> = new Subject();
 
   constructor(private router: Router,
-              private store: TodoStoreService) {
+              private store: TodoStoreService,
+              private toasts: ToastService) {
     const navigation = this.router.getCurrentNavigation()
     if (navigation?.extras.state) {
       console.log('ToDoEditComponent initialized');
@@ -67,7 +68,14 @@ export class ToDoEditComponent implements OnInit {
   saveTodo() {
     this.todo && (
       this.store.updateTask(this.todo.id, this.todo).pipe(
-        takeUntil(this.destroyed$)
+        takeUntil(this.destroyed$),
+        tap(() => {
+          this.toasts.showToast('TOASTS.TASK_UPDATE')
+        }),
+        catchError(() => {
+          this.toasts.showToast('TOASTS.TASK_ERROR')
+          return this.router.navigate(['/tasks']);
+        })
       ).subscribe(() => {
         this.goBack()
       })

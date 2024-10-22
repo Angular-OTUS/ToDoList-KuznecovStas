@@ -1,5 +1,6 @@
 {
   "SELECT_LANGUAGE": "Переключение языка",
+  "PAGE_NOT_FOUND": "Страница не найдена",
   "BUTTONS": {
     "ADD": "+",
     "ADD_TITLE": "Добавить задачу",
