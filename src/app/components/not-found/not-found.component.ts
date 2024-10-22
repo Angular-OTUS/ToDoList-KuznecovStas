@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-not-found',
@@ -23,4 +24,10 @@ export class NotFoundComponent {
     }
   };
 
+  constructor(private location: Location, private router: Router) {
+  }
+
+  goBack() {
+    this.router.navigate(['/'])
+  }
 }

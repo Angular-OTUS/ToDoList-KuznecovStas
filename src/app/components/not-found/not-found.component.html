@@ -2,5 +2,5 @@
   <p>Page NOT FOUND</p>
 </div>
 <div class="notfound_button">
-  <app-button [button]=homeButton [routerLink]="'/'"></app-button>
+  <app-button (click)=goBack() [button]=homeButton></app-button>
 </div>

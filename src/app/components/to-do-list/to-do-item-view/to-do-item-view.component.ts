@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
 import {TodoStoreService} from "../../../services";
 import {Button, TodoTask} from '../../../interfaces';
-import {tap} from 'rxjs';
+import {catchError, tap} from 'rxjs';
 import {JsonPipe, NgIf} from "@angular/common";
 import {ButtonComponent} from "../../button/button.component";
+import {ROUTERS} from "../../../constants/routers";
+
 
 @Component({
   selector: 'app-to-do-item-view',
@@ -54,9 +56,12 @@ export class ToDoItemViewComponent implements OnInit {
       const id = Number(params['id']);
       this.store.getTaskByID(id).pipe(
         tap(data => {
-            this.todo = data;
-          }
-        )).subscribe();
+          this.todo = data;
+        }),
+        catchError(() => {
+          return this.router.navigate([ROUTERS.NOT_FOUND]);
+        })
+      ).subscribe();
     });
   }
 

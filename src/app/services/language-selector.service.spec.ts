@@ -20,21 +20,25 @@ describe('LanguageSelectorService', () => {
     translateServiceSpy = TestBed.inject(TranslateService) as jasmine.SpyObj<TranslateService>;
   });
 
-  it('should be created', () => {
+  it('Создания сервиса', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should set default language on initialization', () => {
+  it('Устанавливаем язык ', () => {
     expect(translateServiceSpy.setDefaultLang).toHaveBeenCalledWith('ru');
     expect(translateServiceSpy.use).toHaveBeenCalledWith('ru');
   });
 
-  it('should return default language', () => {
+  it('возвращает язык по умолчанию', () => {
     expect(service.getDefaultLanguage()).toBe('ru');
   });
 
-  it('should change language', () => {
+  it('изменяет язык', () => {
     service.use('en');
     expect(translateServiceSpy.use).toHaveBeenCalledWith('en');
+  });
+  it('не изменяет язык, если передан пустой строкой', () => {
+    service.use('');
+    expect(translateServiceSpy.use).not.toHaveBeenCalledWith('');
   });
 });
