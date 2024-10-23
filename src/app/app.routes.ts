@@ -1,3 +1,22 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
+import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
+import {NotFoundComponent} from "./components/not-found/not-found.component";
+import {todoListRoutes} from "./components/to-do-list/todo-list.routes";
+import {ROUTERS} from "./constants/routers";
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: ROUTERS.VIEW_TASKS,
+    pathMatch: 'full'
+  },
+  {
+    path: ROUTERS.VIEW_TASKS,
+    component: ToDoListComponent,
+    children: todoListRoutes // инклудим из другого файла
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
+];

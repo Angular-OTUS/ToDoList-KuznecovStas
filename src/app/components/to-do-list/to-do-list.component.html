@@ -1,7 +1,6 @@
 @if (!isLoading) {
   <app-spinner spinnerTitle="LoadingDataFromServer"></app-spinner>
 } @else {
-  <app-language-selector></app-language-selector>
   <div class="todo-lists">
     <h1>{{ 'TodoTitle' | translate }}</h1>
     <div class="filter-container">
@@ -12,20 +11,19 @@
         <option value="Completed">{{ 'Filter.COMPLETE'| translate }}</option>
       </select>
     </div>
+
+
+    <app-button (click)="addTask()" [button]=addTaskButton></app-button>
     <div class="todo-items-container">
       <ul>
         <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
                         [selectedItem]="selectedItem"
                         (deleteToDoItem)="deleteTask(item.id)"
                         (finishToDoItem)="setStatus(item.id)"
-                        (showDescriptionToDoItem)="showDescription(item.id)"
-                        (updateToDoItem)="updateTask(item)"
         ></app-to-do-item>
       </ul>
-      <span *ngIf="todoDescription" class="todo-description">{{ todoDescription }}</span>
     </div>
-    <app-todo-create-item></app-todo-create-item>
-
+    <router-outlet/>
 
   </div>
 }

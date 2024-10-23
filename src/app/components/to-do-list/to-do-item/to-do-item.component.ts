@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TodoTask} from "../../interfaces/to-do";
-import {ButtonComponent} from "../button/button.component";
-import {Button} from "../../interfaces/button";
+import {Button, TodoTask} from "../../../interfaces";
+import {ButtonComponent} from "../../button/button.component";
 import {NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-to-do-item',
@@ -21,8 +21,7 @@ import {TranslateModule} from "@ngx-translate/core";
 })
 export class ToDoItemComponent {
   deleteButton: Button
-  finishButton: Button
-  saveButton: Button
+  editButton: Button
 
   @Input() todo!: TodoTask;
   @Input() selectedItem!: number | null;
@@ -30,9 +29,8 @@ export class ToDoItemComponent {
   @Output() finishToDoItem = new EventEmitter<number>;
   @Output() showDescriptionToDoItem = new EventEmitter<number>();
   @Output() updateToDoItem = new EventEmitter<TodoTask>();
-  isEdit: number | null = null;
 
-  constructor() {
+  constructor(private router: Router) {
     this.deleteButton = {
       icon: "BUTTONS.DELETE",
       title: "BUTTONS.DELETE_TITLE",
@@ -41,17 +39,9 @@ export class ToDoItemComponent {
         background: "red",
       }
     }
-    this.finishButton = {
-      icon: "BUTTONS.FINISH",
-      title: "BUTTONS.FINISH_TITLE",
-      class: {
-        color: "white",
-        background: "green",
-      }
-    }
-    this.saveButton = {
-      icon: "BUTTONS.SAVE",
-      title: "BUTTONS.SAVE_TITLE",
+    this.editButton = {
+      icon: "BUTTONS.EDIT",
+      title: "BUTTONS.EDIT_TITLE",
       class: {
         color: "white",
         background: "green",
@@ -59,25 +49,22 @@ export class ToDoItemComponent {
     }
   }
 
-  finishItem(todoId: number) {
+  public finishItem(todoId: number): void {
     this.finishToDoItem.emit(todoId)
   }
 
-  deleteItem(todoId: any) {
+  public deleteItem(todoId: any): void {
     this.deleteToDoItem.emit(todoId)
   }
 
-  showDescription(todoId: number) {
-    this.showDescriptionToDoItem.emit(todoId)
+  // показывает описание таска
+  public goToTodo(id: number): void {
+    this.router.navigate(['/tasks', id])
   }
 
-  updateTitle() {
-    this.isEdit = null
-    this.updateToDoItem.emit(this.todo)
-  }
-
-  editTask(todoId: number) {
-    this.isEdit = todoId
+  // редактирование таска
+  public editItem(todo: TodoTask): void {
+    this.router.navigate(['/tasks', todo.id, 'edit'], {state: {todo: this.todo}})
   }
 }
 

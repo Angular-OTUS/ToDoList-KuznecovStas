@@ -5,11 +5,12 @@ import {ToDoListComponent} from "./components/to-do-list/to-do-list.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {ButtonComponent} from "./components/button/button.component";
 import {ToastComponent} from "./components/toast/toast.component";
+import {LanguageSelectorComponent} from "./components/language-selector/language-selector.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToDoListComponent, TranslateModule, ButtonComponent, TuiRoot, ToastComponent],
+  imports: [RouterOutlet, ToDoListComponent, TranslateModule, ButtonComponent, TuiRoot, ToastComponent, LanguageSelectorComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
-import {Button} from "../../interfaces/button";
+import {Button} from "../../interfaces";
 import {NgClass, NgIf, NgStyle} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 import {TuiButton} from '@taiga-ui/core';

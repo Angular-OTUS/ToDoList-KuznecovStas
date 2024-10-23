@@ -2,9 +2,8 @@ import {Component} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
-import {TodoStoreService} from "../../services/todo-store.service";
-import {ToastService} from "../../services/toast.service";
-import {Button} from "../../interfaces/button";
+import {ToastService, TodoStoreService} from "../../services";
+import {Button} from "../../interfaces";
 import {catchError, of, Subject, takeUntil, tap} from "rxjs";
 
 @Component({

@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {TodoTask} from "../interfaces/to-do";
+import {TodoTask} from "../interfaces";
 import {BehaviorSubject, Observable, of, Subject, takeUntil, tap} from "rxjs";
 import {HttpClient} from '@angular/common/http';
 
@@ -10,7 +10,6 @@ import {HttpClient} from '@angular/common/http';
 export class TodoStoreService implements OnDestroy {
   private _apiBaseURL: string = 'http://localhost:3000';
   private _todoItems: TodoTask[] = [];
-
   private _todoItemsSubject: BehaviorSubject<TodoTask[]> = new BehaviorSubject<TodoTask[]>(this._todoItems);
   public todoItems$ = this._todoItemsSubject.asObservable();
   private destroyed$: Subject<void> = new Subject();
@@ -18,7 +17,12 @@ export class TodoStoreService implements OnDestroy {
   constructor(private http: HttpClient) {
     this.getAllTasks()
   }
-  
+
+  public getTaskByID(id: number): Observable<TodoTask> {
+    return this.http.get<TodoTask>(this._apiBaseURL + '/todos/' + id)
+      .pipe(takeUntil(this.destroyed$));
+  }
+
   public getAllTasks(): TodoTask[] {
     this.http.get<TodoTask[]>(this._apiBaseURL + '/todos')
       .pipe(takeUntil(this.destroyed$)).subscribe(data => {

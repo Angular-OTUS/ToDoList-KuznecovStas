@@ -6,7 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 
 export class LanguageSelectorService {
-  defaultLanguage: string = "ru"
+  private defaultLanguage: string = "ru"
 
 
   constructor(private translate: TranslateService) {
@@ -18,7 +18,7 @@ export class LanguageSelectorService {
     return this.defaultLanguage
   }
 
-  use(lang: string) {
+  use(lang: string): void {
     this.translate.use(lang)
   }
 }
