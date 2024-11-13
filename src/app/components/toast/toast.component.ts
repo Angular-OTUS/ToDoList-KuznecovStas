@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ToastService} from "../../services/";
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {ToastService} from "../../services/toast.service";
 import {NgForOf} from "@angular/common";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces";
+import {TuiAlertService, TuiButton} from '@taiga-ui/core';
 
 @Component({
   selector: 'app-toast',
@@ -11,16 +12,21 @@ import {Button} from "../../interfaces";
   imports: [
     NgForOf,
     TranslateModule,
-    ButtonComponent
+    ButtonComponent,
+    TuiButton
   ],
   templateUrl: './toast.component.html',
-  styleUrl: './toast.component.scss'
+  styleUrl: './toast.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent implements OnInit {
-  toasts: string[] = []
-  closeButton: Button;
+  public toasts: string[] = []
+  public closeButton: Button;
+  private readonly alerts = inject(TuiAlertService);
+  private readonly translate = inject(TranslateService);
 
-  constructor(private toastsService: ToastService) {
+  public constructor(
+    private toastsService: ToastService) {
     this.closeButton = {
       icon: "BUTTONS.CLOSE",
       title: "BUTTONS.CLOSE_TITLE",
@@ -33,13 +39,26 @@ export class ToastComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+
+  public ngOnInit() {
     this.toastsService.toasts$.subscribe(toasts => {
-      this.toasts = toasts
-    })
+      this.toasts = toasts;
+      this.showToasts();
+    });
   }
 
-  removeToast(index: number) {
-    this.toastsService.removeToast(index)
+  public showToasts() {
+    this.toasts.forEach((toast, index) => {
+      const translatedToast = this.translate.instant(toast);
+      this.alerts
+        .open(translatedToast, {label: 'Notification', autoClose: 5000})
+        .subscribe({
+          complete: () => this.removeToast(index)
+        });
+    });
+  }
+
+  public removeToast(index: number) {
+    this.toastsService.removeToast(index);
   }
 }

@@ -5,7 +5,6 @@
         [class.todo-finish]="todo.status === 'Completed'">
       {{ todo.id }}. {{ todo.title }}
     </li>
-
   </div>
   <div class="todo-status-checkbox">
     <input (change)="finishItem(todo.id)" [checked]="todo.status === 'Completed'" type="checkbox"/>

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {TranslateModule} from "@ngx-translate/core";
 import {ButtonComponent} from "../button/button.component";
 import {Button} from "../../interfaces";
-import {LanguageSelectorService} from "../../services";
+import {LanguageSelectorService} from "../../services/language-selector.service";
 
 @Component({
   selector: 'app-language-selector',
@@ -16,7 +16,7 @@ import {LanguageSelectorService} from "../../services";
 })
 
 export class LanguageSelectorComponent {
-  rusButton: Button = {
+  public rusButton: Button = {
     icon: "🇷🇺", //флаг россии вместо иконки
     title: "Русский",
     class: {
@@ -28,7 +28,7 @@ export class LanguageSelectorComponent {
     }
   }
 
-  enButton: Button = {
+  public enButton: Button = {
     icon: "🇺🇸",
     title: "English",
     class: {
@@ -42,13 +42,13 @@ export class LanguageSelectorComponent {
   }
 
 
-  selectLanguage: string = ""
+  public selectLanguage: string = ""
 
-  constructor(private lang: LanguageSelectorService) {
+  public constructor(private lang: LanguageSelectorService) {
     this.selectLanguage = lang.getDefaultLanguage()
   }
 
-  switchLang(lang: string) {
+  public switchLang(lang: string) {
     this.lang.use(lang)
     this.selectLanguage = lang
   }

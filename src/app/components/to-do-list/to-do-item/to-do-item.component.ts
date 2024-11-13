@@ -20,17 +20,17 @@ import {Router} from '@angular/router';
   styleUrl: './to-do-item.component.scss'
 })
 export class ToDoItemComponent {
-  deleteButton: Button
-  editButton: Button
+  public deleteButton: Button
+  public editButton: Button
 
-  @Input() todo!: TodoTask;
-  @Input() selectedItem!: number | null;
-  @Output() deleteToDoItem = new EventEmitter<number>;
-  @Output() finishToDoItem = new EventEmitter<number>;
-  @Output() showDescriptionToDoItem = new EventEmitter<number>();
-  @Output() updateToDoItem = new EventEmitter<TodoTask>();
+  @Input() public todo!: TodoTask;
+  @Input() public selectedItem!: number | null;
+  @Output() public deleteToDoItem = new EventEmitter<number>;
+  @Output() public finishToDoItem = new EventEmitter<number>;
+  @Output() public showDescriptionToDoItem = new EventEmitter<number>();
+  @Output() public updateToDoItem = new EventEmitter<TodoTask>();
 
-  constructor(private router: Router) {
+  public constructor(private router: Router) {
     this.deleteButton = {
       icon: "BUTTONS.DELETE",
       title: "BUTTONS.DELETE_TITLE",
@@ -53,7 +53,7 @@ export class ToDoItemComponent {
     this.finishToDoItem.emit(todoId)
   }
 
-  public deleteItem(todoId: any): void {
+  public deleteItem(todoId: number): void {
     this.deleteToDoItem.emit(todoId)
   }
 

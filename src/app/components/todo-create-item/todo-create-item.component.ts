@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {ButtonComponent} from "../button/button.component";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
-import {ToastService, TodoStoreService} from "../../services";
+import {ToastService} from "../../services/toast.service";
+import {TodoStoreService} from "../../services/todo-store.service";
 import {Button} from "../../interfaces";
 import {catchError, of, Subject, takeUntil, tap} from "rxjs";
 
@@ -18,10 +19,10 @@ import {catchError, of, Subject, takeUntil, tap} from "rxjs";
   styleUrl: './todo-create-item.component.scss'
 })
 export class TodoCreateItemComponent {
-  newTitleValue: string = ''
-  newDescriptionValue: string = ''
+  public newTitleValue: string = ''
+  public newDescriptionValue: string = ''
 
-  addButton: Button = {
+  public addButton: Button = {
     icon: "BUTTONS.ADD",
     title: "BUTTONS.ADD_TITLE",
     class: {
@@ -33,7 +34,7 @@ export class TodoCreateItemComponent {
   }
   private destroyed$: Subject<void> = new Subject();
 
-  constructor(
+  public constructor(
     private store: TodoStoreService,
     private toastService: ToastService) {
 

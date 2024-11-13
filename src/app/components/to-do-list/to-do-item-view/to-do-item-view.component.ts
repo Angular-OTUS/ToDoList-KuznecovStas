@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
-import {TodoStoreService} from "../../../services";
+import {TodoStoreService} from "../../../services/todo-store.service";
 import {Button, TodoTask} from '../../../interfaces';
 import {catchError, tap} from 'rxjs';
 import {JsonPipe, NgIf} from "@angular/common";
@@ -21,12 +21,12 @@ import {ROUTERS} from "../../../constants/routers";
   styleUrl: './to-do-item-view.component.scss'
 })
 export class ToDoItemViewComponent implements OnInit {
-  todo: TodoTask | undefined;
-  goBackButton: Button
-  editTodoButton: Button
+  public todo: TodoTask | undefined;
+  public goBackButton: Button
+  public editTodoButton: Button
 
 
-  constructor(
+  public constructor(
     private route: ActivatedRoute,
     private store: TodoStoreService,
     private router: Router
@@ -51,7 +51,7 @@ export class ToDoItemViewComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = Number(params['id']);
       this.store.getTaskByID(id).pipe(
@@ -65,16 +65,16 @@ export class ToDoItemViewComponent implements OnInit {
     });
   }
 
-  goBack() {
+  public goBack() {
     this.router.navigate(['/']);
   }
 
 
-  editTodo() {
+  public editTodo() {
     this.router.navigate(['edit'], {relativeTo: this.route, state: {todo: this.todo}})
   }
 
-  isTaskEdit() {
+  public isTaskEdit() {
     return this.route.snapshot.firstChild !== null; // если есть дочерний роутер, значит выбрана задача
   }
 }

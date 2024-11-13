@@ -10,7 +10,8 @@ import {ButtonComponent} from "../button/button.component";
 import {TranslateModule} from "@ngx-translate/core";
 import {LanguageSelectorComponent} from "../language-selector/language-selector.component";
 import {TuiInputInline} from "@taiga-ui/kit";
-import {ToastService, TodoStoreService} from "../../services";
+import {ToastService} from "../../services/toast.service";
+import {TodoStoreService} from "../../services/todo-store.service";
 import {catchError, of, Subject, Subscription, takeUntil, tap} from "rxjs";
 import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
 import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
@@ -39,7 +40,7 @@ import {ROUTERS} from "../../constants/routers";
   styleUrl: './to-do-list.component.scss'
 })
 export class ToDoListComponent implements OnInit, OnDestroy {
-  addTaskButton: Button = {
+  public addTaskButton: Button = {
     title: 'BUTTONS.ADD_TITLE',
     icon: 'BUTTONS.ADD',
     class: {
@@ -47,14 +48,14 @@ export class ToDoListComponent implements OnInit, OnDestroy {
       background: 'green',
     }
   }
-  todoItems: TodoTask[] | undefined;
-  isLoading?: boolean;
-  selectedItem: number | null = null;
-  selectedStatus: string | null = null;
+  public todoItems: TodoTask[] | undefined;
+  public isLoading?: boolean;
+  public selectedItem: number | null = null;
+  public selectedStatus: string | null = null;
   private subscription = new Subscription();
   private destroyed$: Subject<void> = new Subject();
 
-  constructor(
+  public constructor(
     private store: TodoStoreService,
     private toastService: ToastService,
     private router: Router,
@@ -67,7 +68,7 @@ export class ToDoListComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     setTimeout(() => this.isLoading = true, 500)
   }
 
@@ -123,11 +124,11 @@ export class ToDoListComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
 
-  addTask() {
+  public addTask() {
     this.router.navigate([ROUTERS.ADD_TASK], {relativeTo: this.route});
   }
 }
