@@ -1,8 +1,29 @@
 .app {
   height: 100vh;
   width: 100vw;
+  //display: flex;
+  background-color: #474646;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  // justify-content: space-between;
+}
+
+.nav {
+  width: 250px;
+  background-color: #474646;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  background-color: #2b2929;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: start;
+  text-align: center;
+  padding-top: 30px;
 }
 

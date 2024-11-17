@@ -42,5 +42,14 @@
     "ALL": "All",
     "IN_PROGRESS": "In Progress",
     "COMPLETE": "Complete"
+  },
+  "NAV": {
+    "BACKLOG": "Backlog",
+    "BOARD": "Board"
+  },
+  "BOARD": {
+    "ALL_TASKS": "All Tasks",
+    "IN_PROGRESS": "In Progress",
+    "COMPLETED": "Completed"
   }
 }

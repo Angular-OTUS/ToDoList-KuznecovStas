@@ -6,14 +6,15 @@ import {TranslateModule} from "@ngx-translate/core";
 import {ButtonComponent} from "./components/button/button.component";
 import {ToastComponent} from "./components/toast/toast.component";
 import {LanguageSelectorComponent} from "./components/language-selector/language-selector.component";
+import {NavbarComponent} from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToDoListComponent, TranslateModule, ButtonComponent, TuiRoot, ToastComponent, LanguageSelectorComponent],
+  imports: [RouterOutlet, ToDoListComponent, TranslateModule, ButtonComponent, TuiRoot, ToastComponent, LanguageSelectorComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ToDoList-KuznecovStas';
+  public title = 'ToDoList-KuznecovStas';
 }

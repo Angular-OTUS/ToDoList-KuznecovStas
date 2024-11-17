@@ -23,6 +23,12 @@
       "title": "123",
       "description": "123123",
       "status": "InProgress"
+    },
+    {
+      "id": "6",
+      "title": "Test22",
+      "description": "ТЕстовый таск",
+      "status": "InProgress"
     }
   ]
 }

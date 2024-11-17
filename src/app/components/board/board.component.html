@@ -1,0 +1,22 @@
+<div class="board">
+  <div class="column">
+    <h3>{{ 'BOARD.ALL_TASKS' |translate }} ({{ todoItems.length }})</h3>
+
+    <div *ngFor="let task of todoItems">
+      {{ task.title }}
+    </div>
+  </div>
+  <div class="column">
+    <h3>{{ 'BOARD.IN_PROGRESS' |translate }} ({{ inProgressTasks.length }})</h3>
+    <div *ngFor="let task of inProgressTasks">
+      {{ task.title }}
+    </div>
+  </div>
+  <div class="column">
+
+    <h3>{{ 'BOARD.COMPLETED' |translate }} ({{ completedTasks.length }})</h3>
+    <div *ngFor="let task of completedTasks">
+      {{ task.title }}
+    </div>
+  </div>
+</div>

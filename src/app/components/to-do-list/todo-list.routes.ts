@@ -1,18 +1,17 @@
 import {Routes} from '@angular/router';
-import {TodoCreateItemComponent} from "../todo-create-item/todo-create-item.component";
-import {ToDoItemViewComponent} from "./to-do-item-view/to-do-item-view.component";
-import {ToDoEditComponent} from "./to-do-edit/to-do-edit.component";
 import {ROUTERS} from "../../constants/routers";
+import {ToDoEditComponent} from "./to-do-edit/to-do-edit.component";
 
 
 export const todoListRoutes: Routes = [
   {
     path: ROUTERS.ADD_TASK,
-    component: TodoCreateItemComponent
+    loadComponent: () => import('../todo-create-item/todo-create-item.component').then(m => m.TodoCreateItemComponent)
   },
   {
     path: ROUTERS.VIEW_TASK_ID,
-    component: ToDoItemViewComponent,
+    loadComponent: () => import('./to-do-item-view/to-do-item-view.component').then(m => m.ToDoItemViewComponent),
+    //loadChildren: () => import('./to-do-item-view/todo-item-view.routes').then(m => m.todoItemViewRoutes)
     children: [
       {
         path: ROUTERS.EDIT_TASK,

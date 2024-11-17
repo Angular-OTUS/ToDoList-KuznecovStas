@@ -44,5 +44,14 @@
     "ALL": "Все",
     "IN_PROGRESS": "В процессе",
     "COMPLETE": "Завершено"
+  },
+  "NAV": {
+    "BACKLOG": "Задачи",
+    "BOARD": "Доска"
+  },
+  "BOARD": {
+    "ALL_TASKS": "Все задачи",
+    "IN_PROGRESS": "В процессе",
+    "COMPLETED": "Завершено"
   }
 }
