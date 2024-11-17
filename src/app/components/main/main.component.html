@@ -1,1 +1,5 @@
-
+@if (!isLoading) {
+  <app-spinner spinnerTitle="LoadingDataFromServer"></app-spinner>
+} @else {
+  {{ 'WELCOME_MESSAGE' | translate }}
+}

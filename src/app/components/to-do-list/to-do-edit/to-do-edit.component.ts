@@ -8,6 +8,7 @@ import {ToastService} from "../../../services/toast.service";
 import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
+import {ROUTERS} from "../../../constants/routers";
 
 @Component({
   selector: 'app-to-do-edit',
@@ -63,7 +64,7 @@ export class ToDoEditComponent implements OnInit {
   }
 
   public goBack() {
-    this.router.navigate(['/tasks']);
+    this.router.navigate([ROUTERS.BACKLOG]);
   }
 
   public saveTodo() {
