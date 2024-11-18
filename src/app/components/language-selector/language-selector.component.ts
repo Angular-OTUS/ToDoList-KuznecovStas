@@ -21,7 +21,7 @@ export class LanguageSelectorComponent {
     title: "Русский",
     class: {
       color: "black",
-      background: "yellow",
+      background: "white",
       height: '50px',
       width: '50px',
       fontSize: '20px'
@@ -33,7 +33,7 @@ export class LanguageSelectorComponent {
     title: "English",
     class: {
       color: "black",
-      background: "yellow",
+      background: "white",
       height: '50px',
       width: '50px',
       fontSize: '20px'
