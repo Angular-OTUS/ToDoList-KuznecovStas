@@ -20,8 +20,8 @@ export class LanguageSelectorComponent {
     icon: "🇷🇺", //флаг россии вместо иконки
     title: "Русский",
     class: {
-      color: "black",
-      background: "white",
+      color: "#000000FF",
+      background: "#FFF",
       height: '50px',
       width: '50px',
       fontSize: '20px'
@@ -32,8 +32,8 @@ export class LanguageSelectorComponent {
     icon: "🇺🇸",
     title: "English",
     class: {
-      color: "black",
-      background: "white",
+      color: "#000000FF",
+      background: "#FFF",
       height: '50px',
       width: '50px',
       fontSize: '20px'

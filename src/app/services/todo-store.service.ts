@@ -22,7 +22,7 @@ export class TodoStoreService implements OnDestroy {
     return this.http.get<TodoTask>(this._apiBaseURL + '/todos/' + id)
       .pipe(takeUntil(this.destroyed$));
   }
-  
+
   public getAllTasks(): TodoTask[] {
     this.http.get<TodoTask[]>(this._apiBaseURL + '/todos')
       .pipe(takeUntil(this.destroyed$)).subscribe(data => {

@@ -1,22 +1,6 @@
-<div class="board">
-  <div class="column">
-    <h3>{{ 'BOARD.ALL_TASKS' |translate }} ({{ todoItems.length }})</h3>
-
-    <div *ngFor="let task of todoItems">
-      {{ task.title }}
-    </div>
-  </div>
-  <div class="column">
-    <h3>{{ 'BOARD.IN_PROGRESS' |translate }} ({{ inProgressTasks.length }})</h3>
-    <div *ngFor="let task of inProgressTasks">
-      {{ task.title }}
-    </div>
-  </div>
-  <div class="column">
-
-    <h3>{{ 'BOARD.COMPLETED' |translate }} ({{ completedTasks.length }})</h3>
-    <div *ngFor="let task of completedTasks">
-      {{ task.title }}
-    </div>
-  </div>
-</div>
+<span class="board">
+  <app-board-column [items]="todoItems" [title]="'BOARD.ALL_TASKS' |translate" class="column"></app-board-column>
+  <app-board-column [items]="inProgressTasks" [title]="'BOARD.IN_PROGRESS' |translate"
+                    class="column"></app-board-column>
+  <app-board-column [items]="completedTasks" [title]="'BOARD.COMPLETED' |translate" class="column"></app-board-column>
+</span>

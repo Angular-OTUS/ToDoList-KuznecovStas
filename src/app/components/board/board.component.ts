@@ -4,13 +4,15 @@ import {Subscription} from "rxjs";
 import {TodoTask} from "../../interfaces";
 import {NgForOf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
+import {BoardColumnComponent} from "./board-column/board-column.component";
 
 @Component({
   selector: 'app-board',
   standalone: true,
   imports: [
     NgForOf,
-    TranslateModule
+    TranslateModule,
+    BoardColumnComponent
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
@@ -31,7 +33,6 @@ export class BoardComponent implements OnDestroy {
         this.completedTasks = items.filter(task => task.status === 'Completed');
       })
     );
-    console.log(this.todoItems);
   }
 
   public ngOnDestroy(): void {

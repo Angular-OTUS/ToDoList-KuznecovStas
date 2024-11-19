@@ -40,8 +40,8 @@ export class ToDoEditComponent implements OnInit {
       icon: "BUTTONS.CANCEL",
       title: "BUTTONS.CANCEL_TITLE",
       class: {
-        color: "white",
-        background: "red",
+        color: "#FFF",
+        background: "#7c2424",
       }
     }
 
@@ -49,8 +49,8 @@ export class ToDoEditComponent implements OnInit {
       icon: "BUTTONS.SAVE",
       title: "BUTTONS.SAVE_TITLE",
       class: {
-        color: "white",
-        background: "green",
+        color: "#FFF",
+        background: "#355324",
       }
     }
   }

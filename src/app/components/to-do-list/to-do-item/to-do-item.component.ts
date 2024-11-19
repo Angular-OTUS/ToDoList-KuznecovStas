@@ -36,16 +36,16 @@ export class ToDoItemComponent {
       icon: "BUTTONS.DELETE",
       title: "BUTTONS.DELETE_TITLE",
       class: {
-        color: "white",
-        background: "red",
+        color: "#FFFFFFFF",
+        background: "#ca0000",
       }
     }
     this.editButton = {
       icon: "BUTTONS.EDIT",
       title: "BUTTONS.EDIT_TITLE",
       class: {
-        color: "white",
-        background: "green",
+        color: "#FFFFFFFF",
+        background: "#4d7839",
       }
     }
   }
