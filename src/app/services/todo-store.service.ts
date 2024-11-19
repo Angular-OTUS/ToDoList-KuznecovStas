@@ -14,7 +14,7 @@ export class TodoStoreService implements OnDestroy {
   public todoItems$ = this._todoItemsSubject.asObservable();
   private destroyed$: Subject<void> = new Subject();
 
-  constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient) {
     this.getAllTasks()
   }
 
@@ -36,7 +36,7 @@ export class TodoStoreService implements OnDestroy {
     return this._todoItems.filter(item => item.status === status);
   }
 
-  public addTask(title: string, description: string): Observable<any> {
+  public addTask(title: string, description: string): Observable<object> {
     // ищем максимальный id
     const maxId: number = Math.max(...this._todoItems!.map(item => item.id));
     const nextID: number = maxId + 1
@@ -56,7 +56,7 @@ export class TodoStoreService implements OnDestroy {
     );
   }
 
-  public deleteTask(id: number): Observable<any> {
+  public deleteTask(id: number): Observable<object> {
     // отправляем на сервер
     return this.http.delete(this._apiBaseURL + '/todos/' + id)
       .pipe(
@@ -83,7 +83,7 @@ export class TodoStoreService implements OnDestroy {
       );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
   }

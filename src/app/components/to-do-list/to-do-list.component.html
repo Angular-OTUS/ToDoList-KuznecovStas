@@ -1,29 +1,26 @@
-@if (!isLoading) {
-  <app-spinner spinnerTitle="LoadingDataFromServer"></app-spinner>
-} @else {
-  <div class="todo-lists">
-    <h1>{{ 'TodoTitle' | translate }}</h1>
-    <div class="filter-container">
-      <label for="statusFilter"> {{ 'Filter.TEXT'| translate }} </label>
-      <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="filterTasks()">
-        <option [value]="null">{{ 'Filter.ALL'| translate }}</option>
-        <option value="InProgress">{{ 'Filter.IN_PROGRESS'| translate }}</option>
-        <option value="Completed">{{ 'Filter.COMPLETE'| translate }}</option>
-      </select>
-    </div>
-
-
-    <app-button (click)="addTask()" [button]=addTaskButton></app-button>
-    <div class="todo-items-container">
-      <ul>
-        <app-to-do-item *ngFor="let item of todoItems" [todo]="item"
-                        [selectedItem]="selectedItem"
-                        (deleteToDoItem)="deleteTask(item.id)"
-                        (finishToDoItem)="setStatus(item.id)"
-        ></app-to-do-item>
-      </ul>
-    </div>
-    <router-outlet/>
-
+<div class="todo-lists">
+  <h1>{{ 'TodoTitle' | translate }}</h1>
+  <div class="filter-container">
+    <label for="statusFilter"> {{ 'Filter.TEXT'| translate }} </label>
+    <select (change)="filterTasks()" [(ngModel)]="selectedStatus" id="statusFilter">
+      <option [value]="null">{{ 'Filter.ALL'| translate }}</option>
+      <option value="InProgress">{{ 'Filter.IN_PROGRESS'| translate }}</option>
+      <option value="Completed">{{ 'Filter.COMPLETE'| translate }}</option>
+    </select>
   </div>
-}
+
+
+  <app-button (click)="addTask()" [button]=addTaskButton></app-button>
+  <div class="todo-items-container">
+    <ul>
+      <app-to-do-item (deleteToDoItem)="deleteTask(item.id)" (finishToDoItem)="setStatus(item.id)"
+                      *ngFor="let item of todoItems"
+                      [selectedItem]="selectedItem"
+                      [todo]="item"
+      ></app-to-do-item>
+    </ul>
+  </div>
+  <router-outlet/>
+
+</div>
+

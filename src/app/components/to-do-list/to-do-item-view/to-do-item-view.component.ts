@@ -35,16 +35,16 @@ export class ToDoItemViewComponent implements OnInit {
       icon: "BUTTONS.GO_BACK",
       title: "BUTTONS.GO_BACK_TITLE",
       class: {
-        color: "white",
-        background: "red",
+        color: "#FFF",
+        background: "#ca0000",
       }
     }
     this.editTodoButton = {
       icon: "BUTTONS.EDIT",
       title: "BUTTONS.EDIT_TITLE",
       class: {
-        color: "white",
-        background: "green",
+        color: "#FFF",
+        background: "#4d7839",
       }
     }
 

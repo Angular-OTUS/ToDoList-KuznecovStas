@@ -16,12 +16,18 @@
       "id": "4",
       "title": "sdfsdfsf",
       "description": "sdfsdfsdf",
-      "status": "InProgress"
+      "status": "Completed"
     },
     {
       "id": "5",
       "title": "123",
       "description": "123123",
+      "status": "InProgress"
+    },
+    {
+      "id": "6",
+      "title": "Test22",
+      "description": "ТЕстовый таск",
       "status": "InProgress"
     }
   ]

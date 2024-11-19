@@ -9,16 +9,16 @@ export class LanguageSelectorService {
   private defaultLanguage: string = "ru"
 
 
-  constructor(private translate: TranslateService) {
+  public constructor(private translate: TranslateService) {
     this.translate.setDefaultLang(this.defaultLanguage)
     this.translate.use(this.defaultLanguage)
   }
 
-  getDefaultLanguage(): string {
+  public getDefaultLanguage(): string {
     return this.defaultLanguage
   }
 
-  use(lang: string): void {
+  public use(lang: string): void {
     this.translate.use(lang)
   }
 }

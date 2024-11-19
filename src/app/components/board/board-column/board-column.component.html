@@ -1,0 +1,6 @@
+<span>
+    <h3>{{ title |translate }} ({{ items.length }})</h3>
+    <div *ngFor="let item of items; trackBy: trackBy">
+      {{ item.title }}
+    </div>
+  </span>

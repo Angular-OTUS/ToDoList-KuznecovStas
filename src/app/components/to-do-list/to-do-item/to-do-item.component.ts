@@ -5,6 +5,7 @@ import {NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {Router} from '@angular/router';
+import {ROUTERS} from "../../../constants/routers";
 
 @Component({
   selector: 'app-to-do-item',
@@ -35,16 +36,16 @@ export class ToDoItemComponent {
       icon: "BUTTONS.DELETE",
       title: "BUTTONS.DELETE_TITLE",
       class: {
-        color: "white",
-        background: "red",
+        color: "#FFFFFFFF",
+        background: "#ca0000",
       }
     }
     this.editButton = {
       icon: "BUTTONS.EDIT",
       title: "BUTTONS.EDIT_TITLE",
       class: {
-        color: "white",
-        background: "green",
+        color: "#FFFFFFFF",
+        background: "#4d7839",
       }
     }
   }
@@ -59,12 +60,12 @@ export class ToDoItemComponent {
 
   // показывает описание таска
   public goToTodo(id: number): void {
-    this.router.navigate(['/tasks', id])
+    this.router.navigate([ROUTERS.BACKLOG, id])
   }
 
   // редактирование таска
   public editItem(todo: TodoTask): void {
-    this.router.navigate(['/tasks', todo.id, 'edit'], {state: {todo: this.todo}})
+    this.router.navigate([ROUTERS.BACKLOG, todo.id, 'edit'], {state: {todo: this.todo}})
   }
 }
 

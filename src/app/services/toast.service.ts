@@ -7,14 +7,14 @@ import {BehaviorSubject} from "rxjs";
 export class ToastService {
   private _toasts: string[] = []
   private _toastsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this._toasts)
-  toasts$ = this._toastsSubject.asObservable()
-  
-  showToast(message: string) {
+  public toasts$ = this._toastsSubject.asObservable()
+
+  public showToast(message: string) {
     this._toasts.push(message);
     this._toastsSubject.next(this._toasts);
   }
 
-  removeToast(index: number) {
+  public removeToast(index: number) {
     this._toasts.splice(index, 1);
     this._toastsSubject.next(this._toasts);
   }

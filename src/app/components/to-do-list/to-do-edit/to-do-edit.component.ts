@@ -8,6 +8,7 @@ import {ToastService} from "../../../services/toast.service";
 import {catchError, Subject, takeUntil, tap} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
+import {ROUTERS} from "../../../constants/routers";
 
 @Component({
   selector: 'app-to-do-edit',
@@ -39,8 +40,8 @@ export class ToDoEditComponent implements OnInit {
       icon: "BUTTONS.CANCEL",
       title: "BUTTONS.CANCEL_TITLE",
       class: {
-        color: "white",
-        background: "red",
+        color: "#FFF",
+        background: "#7c2424",
       }
     }
 
@@ -48,8 +49,8 @@ export class ToDoEditComponent implements OnInit {
       icon: "BUTTONS.SAVE",
       title: "BUTTONS.SAVE_TITLE",
       class: {
-        color: "white",
-        background: "green",
+        color: "#FFF",
+        background: "#355324",
       }
     }
   }
@@ -63,7 +64,7 @@ export class ToDoEditComponent implements OnInit {
   }
 
   public goBack() {
-    this.router.navigate(['/tasks']);
+    this.router.navigate([ROUTERS.BACKLOG]);
   }
 
   public saveTodo() {

@@ -1,5 +1,4 @@
 .todo-lists {
-  
   width: 500px;
   justify-content: center;
   align-content: center;
@@ -9,6 +8,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   text-align: center;
+  color: black;
 }
 
 .todo-items-container {
@@ -47,7 +47,7 @@ ul {
 
 .todo-description {
   min-width: 200px;
-  text-align: left;
+  text-align: center;
   white-space: pre-wrap;
   background: #8a8a8a;
   color: #ffffff;

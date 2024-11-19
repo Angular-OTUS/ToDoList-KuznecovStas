@@ -1,0 +1,16 @@
+.board {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.column {
+  flex: 1;
+  margin: 0 30px;
+  white-space: nowrap;
+}
+
+h3 {
+  text-align: center;
+}

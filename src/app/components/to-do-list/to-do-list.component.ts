@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {Button, TodoTask} from "../../interfaces";
 import {FormsModule} from "@angular/forms";
@@ -39,7 +39,7 @@ import {ROUTERS} from "../../constants/routers";
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.scss'
 })
-export class ToDoListComponent implements OnInit, OnDestroy {
+export class ToDoListComponent implements OnDestroy {
   public addTaskButton: Button = {
     title: 'BUTTONS.ADD_TITLE',
     icon: 'BUTTONS.ADD',
@@ -49,7 +49,6 @@ export class ToDoListComponent implements OnInit, OnDestroy {
     }
   }
   public todoItems: TodoTask[] | undefined;
-  public isLoading?: boolean;
   public selectedItem: number | null = null;
   public selectedStatus: string | null = null;
   private subscription = new Subscription();
@@ -66,10 +65,6 @@ export class ToDoListComponent implements OnInit, OnDestroy {
         this.todoItems = items;
       })
     );
-  }
-
-  public ngOnInit(): void {
-    setTimeout(() => this.isLoading = true, 500)
   }
 
 
